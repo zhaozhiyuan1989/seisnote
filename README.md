@@ -29,7 +29,7 @@
 
 ## 项目部署
 
-本项目采用 GiHub action 自动部署到 gh-page 分支。
+本项目采用 GiHub Actions 自动部署到 gh-pages 分支。
 
 ## 许可协议
 
