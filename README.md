@@ -6,10 +6,9 @@
 
 本项目主要用来记录在不同操作系统上安装、使用和学习地震学软件时遇到的一些问题。
 
-- 项目主页：https://github.com/zhaozhiyuan1989/seisnote
-- 网页版：
-        - https://zhaozhiyuan1989.github.io/seisnote/
-        - https://seismology.gitee.io/seisnote
+- 项目主页： https://github.com/zhaozhiyuan1989/seisnote
+- GitHub Pages： https://zhaozhiyuan1989.github.io/seisnote/
+- Gitee Pages： https://seismology.gitee.io/seisnote
 
 因为 Gitee Pages 目前是手动同步 GitHub Pages，所以可能会有延迟更新。
 
