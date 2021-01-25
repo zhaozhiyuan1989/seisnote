@@ -30,6 +30,32 @@
 
         make html
 
+4.  维护
+
+        # 切换到开发分支
+        $ git checkout -b mydev
+        
+        # 合并主分支的更新
+        $ git checkout main
+        $ git pull
+        $ git checkout mydev
+        $ git merge main
+
+        # 修改并提交
+        $ git add --all
+        $ git commit -m ""
+
+        # 将开发分支推送到远程仓库
+        $ git push -u origin mydev
+        $ git push
+        
+        # 切换回主分支
+        $ git checkout main
+        # 删除本地开发分支
+        $ git branch -D mydenv
+        # 删除远程开发分支
+        $ git push origin :mydev
+
 ## 项目部署
 
 本项目采用 GiHub Actions 自动部署到 gh-pages 分支。
