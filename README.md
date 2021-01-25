@@ -10,7 +10,7 @@
 - GitHub Pages： https://zhaozhiyuan1989.github.io/seisnote/
 - Gitee Pages： https://seismology.gitee.io/seisnote
 
-因为 Gitee Pages 目前是手动同步 GitHub Pages，所以可能会有延迟更新。
+因为 Gitee Pages 目前是手动同步 GitHub Pages，所以会有延迟更新。
 
 ## 构建项目
 
