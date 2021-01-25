@@ -4,7 +4,7 @@
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc/4.0/deed.zh)
 
 
-本项目主要用来记录在不同操作系统上安装、使用和学习地震学软件时遇到的一些问题。
+本项目主要用来记录学习过程中遇到的一些问题。
 
 - 项目主页： https://github.com/zhaozhiyuan1989/seisnote
 - GitHub Pages： https://zhaozhiyuan1989.github.io/seisnote/
