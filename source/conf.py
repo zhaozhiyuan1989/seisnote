@@ -65,8 +65,7 @@ exclude_patterns = []
 # Cross-refering other projects
 # https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html
 intersphinx_mapping = {
-    "seisnote": ("https://zhaozhiyuan1989.github.io/seisnote/", None),
-    "docs.gmt-china": ("https://docs.gmt-china.org/", None),
+    "docs.gmt-china": ("https://docs.gmt-china.org/latest/", None),
 }
 
 
