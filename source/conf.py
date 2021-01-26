@@ -111,13 +111,13 @@ html_context = {
 sphinx_gallery_conf = {
     # path to your example scripts
     #'examples_dirs': ['../obspy', '../obspy1'],
-    'examples_dirs': ['../obspy'],
+    'examples_dirs': ['obspy'],
     # path to where to save gallery generated output
-    'gallery_dirs': ['buildpy/obspy_gallery'],
+    'gallery_dirs': ['../build/obspy_gallery'],
     # specify that examples should be ordered according to filename
     'within_subsection_order': FileNameSortKey,
     # directory where function granular galleries are stored
-    'backreferences_dir': 'buildpy/gen_modules/backreferences',
+    'backreferences_dir': '../build/gen_modules/backreferences',
     # Modules for which function level galleries are created.  In
     # this case sphinx_gallery and numpy in a tuple of strings.
     #'doc_module': ('SampleModule'),

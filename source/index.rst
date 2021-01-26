@@ -31,7 +31,7 @@
    :caption: 地震学软件
    :hidden:
 
-   buildpy/obspy_gallery/index
+   ../build/obspy_gallery/index
 
 
 地震学学习笔记。
