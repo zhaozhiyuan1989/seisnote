@@ -1,5 +1,5 @@
 """
-2. UTCDateTime
+世界标准时间
 ====================
 
 本节简单介绍 ``UTCDateTime`` 函数。
@@ -14,8 +14,8 @@ from obspy import UTCDateTime
 #%%
 # 打印参考时间和距离零时刻3600秒的时间
 
-UTCDateTime(0) 
-UTCDateTime(3600) 
+print(UTCDateTime(0)) 
+print(UTCDateTime(3600)) 
 
 #%%
 # 不同日期格式
