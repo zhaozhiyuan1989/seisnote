@@ -101,11 +101,9 @@ bulk = 'quality=B\n' + \
 st = client.get_waveforms_bulk(bulk)
 st.plot()
 
-#%%
 # 包含 ``request``` 的文件:
-
-st = client.get_waveforms_bulk("request.txt", attach_response=True)
-st.remove_response(output="VEL")
+#st = client.get_waveforms_bulk("request.txt", attach_response=True)
+#st.remove_response(output="VEL")
 
 #%%
 # 下载地震事件
