@@ -14,7 +14,7 @@
 """
 
 #%%
-# 第一步，初始化 ``client``` 对象，总是需要执行这一步：
+# 第一步，初始化 ``client`` 对象，总是需要执行这一步：
 
 from obspy.clients.fdsn import Client
 client = Client("IRIS")  # 这里既可以用数据中心的简写，也可以用 URL 地址
@@ -41,9 +41,9 @@ for key in sorted(URL_MAPPINGS.keys()):
 # 
 # 设置 ``attach_response=True`` 将为波形数据添加仪器响应信息。
 #
-# 以下示例申请了美国 ``IU``` 台网 ``ANMO`` 和 ``AFI`` 台站 ``LHZ`` 分量
+# 以下示例申请了美国 ``IU`` 台网 ``ANMO`` 和 ``AFI`` 台站 ``LHZ`` 分量
 # 从 ``2010-02-27 06:45 (UTC)`` 开始的 60 分钟连续波形数据，结果作为
-# Stream 对象返回（建议阅读 Public Method 一节）。
+# Stream 对象返回。
 # 如果想同时发送多个请求可以使用 ``get_waveforms_bulk()`` 方法。
 
 from obspy import UTCDateTime
@@ -110,16 +110,16 @@ st.plot()
 # --------------------
 #
 # **get_events**\ (starttime=None, endtime=None, minlatitude=None, maxlatitude=None,
-#  minlongitude=None, maxlongitude=None, latitude=None, longitude=None,
-#  minradius=None, maxradius=None, mindepth=None, maxdepth=None, minmagnitude=None,
-#  maxmagnitude=None, magnitudetype=None, includeallorigins=None,
-#  includeallmagnitudes=None, includearrivals=None, eventid=None, limit=None, 
+# minlongitude=None, maxlongitude=None, latitude=None, longitude=None,
+# minradius=None, maxradius=None, mindepth=None, maxdepth=None, minmagnitude=None,
+# maxmagnitude=None, magnitudetype=None, includeallorigins=None,
+# includeallmagnitudes=None, includearrivals=None, eventid=None, limit=None, 
 # offset=None, orderby=None, catalog=None, contributor=None, updatedafter=None,
-#  filename=None, **kwargs)
+# filename=None, **kwargs)
 # 
 # 与 ``get_waveforms`` 类似，申请结果返回 ``Catalog`` 对象。
 #
-# 用 ``eventid``` 申请地震：
+# 用 ``eventid`` 申请地震：
 
 client = Client("IRIS")
 cat = client.get_events(eventid=609301)
@@ -138,12 +138,12 @@ cat.plot(projection="ortho")
 # 下载台站数据
 # ------------------
 # **get_stations**\ (starttime=None, endtime=None, startbefore=None, startafter=None,
-#  endbefore=None, endafter=None, network=None, station=None, location=None, 
+# endbefore=None, endafter=None, network=None, station=None, location=None, 
 # channel=None, minlatitude=None, maxlatitude=None, minlongitude=None, 
 # maxlongitude=None, latitude=None, longitude=None, minradius=None,
-#  maxradius=None, level=None, includerestricted=None,
-#  includeavailability=None, updatedafter=None, matchtimeseries=None,
-#  filename=None, format=None, **kwargs)
+# maxradius=None, level=None, includerestricted=None,
+# includeavailability=None, updatedafter=None, matchtimeseries=None,
+# filename=None, format=None, **kwargs)
 # 
 # 申请结果返回 ``Inventory`` 对象。
 

@@ -11,7 +11,7 @@ from obspy import read
 #%%
 # 绘制单分量波形
 # --------------------
-
+#
 # 从服务器读取单分量波形数据：
 
 singlechannel = read('https://examples.obspy.org/COP.BHZ.DK.2009.050')  
@@ -21,7 +21,7 @@ singlechannel.plot(outfile='singlechannel.pdf')   # 绘制单分量波形数据�
 #%%
 # 绘制三分量波形
 # ---------------------
-
+#
 # 分别读取三分量波形数据并叠加：
 
 threechannels = read('https://examples.obspy.org/COP.BHE.DK.2009.050')
@@ -42,8 +42,8 @@ singlechannel.plot(color='red', number_of_ticks=5,
 #%%
 # 绘制 ``dayplot`` 图
 # ---------------------------
-
-# 绘制 ``dayplot``` 图，参数含义参考 ``plot()``：
+#
+# 绘制 ``dayplot`` 图，参数含义参考 ``plot()``：
 
 singlechannel.plot(type='dayplot', interval=20) 
 
@@ -60,7 +60,7 @@ st.plot(type="dayplot", interval=60, right_vertical_labels=True,
             events={'min_magnitude': 6.5})  # 标上6.5级以上地震
 
 #%%
-# 绘制 ``section``` 图
+# 绘制 ``section`` 图
 # -------------------------
 
 import matplotlib.pyplot as plt
