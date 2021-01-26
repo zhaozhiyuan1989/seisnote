@@ -1,0 +1,12 @@
+name: seisnote
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - python=3.8
+    - pip
+    - sphinx
+    - sphinx-gallery
+    - sphinx_rtd_theme
+    - sphinx-cjkspace
+    - sphinx-tabs

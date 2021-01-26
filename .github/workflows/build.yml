@@ -29,6 +29,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+#     # Setup Miniconda
+#     - name: Setup Miniconda
+#       uses: conda-incubator/setup-miniconda@v2.0.0
+#       with:
+#         python-version: ${{ matrix.python-version }}
+#         channels: conda-forge
+#         miniconda-version: "latest"
+#
+#     # Install build dependencies from conda-forge
+#     - name: Install build dependencies
+#       run: conda install sphinx sphinx-gallery sphinx_rtd_theme sphinx-cjkspace sphinx-tabs
+
+
       - name: Build sphinx document
         run: make dirhtml
 
