@@ -40,7 +40,7 @@ jobs:
       # Install build dependencies from conda-forge
       - name: Install build dependencies
         run: |
-              conda install pip sphinx sphinx-gallery sphinx_rtd_theme sphinx-tabs cartopy
+              conda install pip obspy sphinx sphinx-gallery sphinx_rtd_theme sphinx-tabs cartopy
               pip install sphinx-cjkspace
 
 
