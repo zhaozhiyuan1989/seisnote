@@ -3,32 +3,23 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: Microsoft Windows
+   :caption: 计算机基础
    :hidden:
 
-   microsoft-windows/index
-   microsoft-windows/commandline/index
-   microsoft-windows/software/index
+   computer/index
+
 
 .. toctree::
    :maxdepth: 3
-   :caption: Linux
-   :hidden:
-
-   linux-system/index
-   linux-system/commandline/index
-   linux-system/software/index
-
-.. toctree::
-   :maxdepth: 3
-   :caption: MacOS
-   :hidden:
-
-   macos-system/index
-
-.. toctree::
-   :maxdepth: 2
    :caption: 地震学软件
+   :hidden:
+
+   seismology/index
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: 中文手册
    :hidden:
 
    buildpy/obspy_gallery/index
@@ -38,4 +29,4 @@
 
 .. admonition:: 免责声明
 
-   本站所有内容均出于个人理解，符合个人使用习惯，仅供他人参考。
+   本站所有内容均出于个人理解，仅供参考。
