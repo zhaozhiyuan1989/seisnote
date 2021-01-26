@@ -3,5 +3,3 @@ _build
 .vscode
 .DS_Store
 buildpy
-!obspy/*.py
-!obspy/*.rst
