@@ -10,6 +10,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
@@ -40,7 +43,7 @@ jobs:
  
       # Install build dependencies from conda-forge
       - name: Install build dependencies
-        run: conda install pip obspy sphinx sphinx-gallery sphinx_rtd_theme sphinx-tabs cartopy
+        run: conda install pip obspy sphinx sphinx-build sphinx-gallery sphinx_rtd_theme sphinx-tabs cartopy
 
 
 
