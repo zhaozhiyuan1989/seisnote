@@ -6,4 +6,5 @@ sphinx-tabs
 obspy
 numpy
 matplotlib
+Cython
 cartopy
