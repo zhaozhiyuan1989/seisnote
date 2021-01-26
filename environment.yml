@@ -2,7 +2,8 @@ name: seisnote
 channels:
     - conda-forge
     - defaults
-dependencies:
+# sphinx-cjkspace 只能用 pip 下载，此environment停用
+    dependencies:
     - python=3.8
     - pip
     - sphinx
