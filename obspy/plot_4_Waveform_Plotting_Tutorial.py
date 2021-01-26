@@ -9,13 +9,20 @@
 from obspy import read
 
 #%%
-# 从服务器读取单分量波形数据
+# 绘制单分量波形
+# --------------------
+
+# 从服务器读取单分量波形数据：
 
 singlechannel = read('https://examples.obspy.org/COP.BHZ.DK.2009.050')  
 singlechannel.plot(outfile='singlechannel.pdf')   # 绘制单分量波形数据，默认大小为 800x250, 保存图像
 
+
 #%%
-# 分别读取三分量波形数据并叠加
+# 绘制三分量波形
+# ---------------------
+
+# 分别读取三分量波形数据并叠加：
 
 threechannels = read('https://examples.obspy.org/COP.BHE.DK.2009.050')
 threechannels += read('https://examples.obspy.org/COP.BHN.DK.2009.050')
@@ -23,7 +30,9 @@ threechannels += read('https://examples.obspy.org/COP.BHZ.DK.2009.050')
 threechannels.plot(size=(800,400))  # 绘制多分量波形数据，大小为 800x400
 
 #%%
-# 自定义绘图，更多选项参考 plot() 方法
+# 自定义绘图
+# ---------------------------
+# 自定义绘图，更多选项参考 ``plot()`` 方法：
 
 dt = singlechannel[0].stats.starttime
 singlechannel.plot(color='red', number_of_ticks=5,
@@ -31,13 +40,16 @@ singlechannel.plot(color='red', number_of_ticks=5,
                     starttime=dt + 60*60, endtime=dt + 60*60 + 120)
 
 #%%
-# 绘制 dayplot 图，参数含义参考 plot()
+# 绘制 ``dayplot`` 图
+# ---------------------------
+
+# 绘制 ``dayplot``` 图，参数含义参考 ``plot()``：
 
 singlechannel.plot(type='dayplot', interval=20) 
 
 
 #%%
-# 将地震信息添加到 dayplot 中
+# 将地震信息添加到 dayplot 中：
 
 from obspy import read
 st = read("https://examples.obspy.org/GR.BFO..LHZ.2012.108")
@@ -48,7 +60,8 @@ st.plot(type="dayplot", interval=60, right_vertical_labels=True,
             events={'min_magnitude': 6.5})  # 标上6.5级以上地震
 
 #%%
-# 绘制 section 图
+# 绘制 ``section``` 图
+# -------------------------
 
 import matplotlib.pyplot as plt
 from matplotlib.transforms import blended_transform_factory
@@ -98,7 +111,8 @@ for tr in st:
 plt.show()
 
 #%%
-# 利用 matplotlib 自定义绘制
+# 利用 ``matplotlib`` 自定义绘图
+# -----------------------------------
 
 import matplotlib.pyplot as plt
 from obspy import read

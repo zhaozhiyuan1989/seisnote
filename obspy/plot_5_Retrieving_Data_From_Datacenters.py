@@ -14,7 +14,7 @@
 """
 
 #%%
-# 第一步，初始化 client 对象，总是需要执行这一步
+# 第一步，初始化 ``client``` 对象，总是需要执行这一步：
 
 from obspy.clients.fdsn import Client
 client = Client("IRIS")  # 这里既可以用数据中心的简写，也可以用 URL 地址
@@ -30,17 +30,17 @@ for key in sorted(URL_MAPPINGS.keys()):
 # 下载波形数据
 # ---------------
 # 
-# **get_waveforms**(network, station, location, channel, starttime, endtime, 
+# **get_waveforms**\ (network, station, location, channel, starttime, endtime, 
 # quality=None, minimumlength=None, longestonly=None, filename=None, attach_response=False, **kwargs)
 # 
-# 这里只介绍 ``filename`` 参数和 ``attach_response``` 参数。
+# 这里只介绍 ``filename`` 参数和 ``attach_response`` 参数。
 # 
-# 为 ``filename`` 赋值后申请结果将直接保存在本地而不会传给 ``ObsPy``` 对象，
+# 为 ``filename`` 赋值后申请结果将直接保存在本地而不会传给 ``ObsPy`` 对象，
 # 例如添加参数 ``filename="1.mseed"`` 后将会把申请的数据保存在本地目录中
 # 的 :file:`1.mseed` ，返回给 ``ObsPy`` 对象的结果为 ``None`` ；
 # 
 # 设置 ``attach_response=True`` 将为波形数据添加仪器响应信息。
-
+#
 # 以下示例申请了美国 ``IU``` 台网 ``ANMO`` 和 ``AFI`` 台站 ``LHZ`` 分量
 # 从 ``2010-02-27 06:45 (UTC)`` 开始的 60 分钟连续波形数据，结果作为
 # Stream 对象返回（建议阅读 Public Method 一节）。
@@ -68,16 +68,16 @@ st.remove_response(output="VEL")   # 去除仪器响应
 st.plot(size=(800,400))
 
 #%%
-# **get_waveforms_bulk**(bulk, quality=None, minimumlength=None, 
+# **get_waveforms_bulk**\ (bulk, quality=None, minimumlength=None, 
 # longestonly=None, filename=None, attach_response=False, **kwargs)
 # 
 # ``bulk`` 可以同时提交多个申请， 符合要求的 ``bulk`` 有以下形式：
 # 
 # - 多个列表项组成的列表，每一个列表项必须包含 ``network, station, location, channel, starttime and endtime``
 # - 包含有效 ``request`` 的字符串
-# - 包含有效 ``request``` 的文件名
+# - 包含有效 ``request`` 的文件名
 # - 包含有效 ``request`` 的已打开文件的句柄
-
+#
 # 多个列表项组成的列表:
 
 client = Client("IRIS")
@@ -91,7 +91,7 @@ st = client.get_waveforms_bulk(bulk)
 st.plot()
 
 #%%
-# 包含有效 ``request``` 的字符串:
+# 包含有效 ``request`` 的字符串:
 
 bulk = 'quality=B\n' + \
          'longestonly=false\n' + \
@@ -101,15 +101,15 @@ bulk = 'quality=B\n' + \
 st = client.get_waveforms_bulk(bulk)
 st.plot()
 
-# 包含 ``request``` 的文件:
+# 包含 request 的文件:
 #st = client.get_waveforms_bulk("request.txt", attach_response=True)
 #st.remove_response(output="VEL")
 
 #%%
 # 下载地震事件
 # --------------------
-
-# **get_events**(starttime=None, endtime=None, minlatitude=None, maxlatitude=None,
+#
+# **get_events**\ (starttime=None, endtime=None, minlatitude=None, maxlatitude=None,
 #  minlongitude=None, maxlongitude=None, latitude=None, longitude=None,
 #  minradius=None, maxradius=None, mindepth=None, maxdepth=None, minmagnitude=None,
 #  maxmagnitude=None, magnitudetype=None, includeallorigins=None,
@@ -117,9 +117,9 @@ st.plot()
 # offset=None, orderby=None, catalog=None, contributor=None, updatedafter=None,
 #  filename=None, **kwargs)
 # 
-# 与 ``get_waveforms`` 类似，申请结果返回 ``Catalog``` 对象。
+# 与 ``get_waveforms`` 类似，申请结果返回 ``Catalog`` 对象。
 #
-# 用 eventid 申请地震：
+# 用 ``eventid``` 申请地震：
 
 client = Client("IRIS")
 cat = client.get_events(eventid=609301)
@@ -137,7 +137,7 @@ cat.plot(projection="ortho")
 #%%
 # 下载台站数据
 # ------------------
-# **get_stations**(starttime=None, endtime=None, startbefore=None, startafter=None,
+# **get_stations**\ (starttime=None, endtime=None, startbefore=None, startafter=None,
 #  endbefore=None, endafter=None, network=None, station=None, location=None, 
 # channel=None, minlatitude=None, maxlatitude=None, minlongitude=None, 
 # maxlongitude=None, latitude=None, longitude=None, minradius=None,
@@ -145,7 +145,7 @@ cat.plot(projection="ortho")
 #  includeavailability=None, updatedafter=None, matchtimeseries=None,
 #  filename=None, format=None, **kwargs)
 # 
-# 申请结果返回 ``Inventory``对象。
+# 申请结果返回 ``Inventory`` 对象。
 
 inventory = client.get_stations(network="IU", station="A*",
                                  starttime=t1,
