@@ -4,5 +4,7 @@ sphinx-cjkspace
 sphinx-gallery
 sphinx-tabs
 obspy
+numpy
+cython
 matplotlib
 cartopy
