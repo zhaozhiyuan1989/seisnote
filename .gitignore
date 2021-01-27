@@ -2,8 +2,9 @@ build
 _build
 .vscode
 .DS_Store
-buildpy
+obspydoc/
 obspy/events.kml
 obspy/inv.pz
 obspy/singlechannel.pdf
 obspy/test.mseed
+gen_modules

@@ -22,8 +22,10 @@ help:
 # 删除所有运行产生的文件
 clean:
 	rm -rf build
-	rm -rf source/buildpy
+	rm -rf source/gen_modules
+	rm -rf source/obspydoc
 	rm obspy/events.kml obspy/inv.pz obspy/singlechannel.pdf obspy/test.mseed
+
 
 # obspy 绘图需要从服务器下载数据，较为缓慢，设置命令不运行任何 python 脚本
 nofig:
