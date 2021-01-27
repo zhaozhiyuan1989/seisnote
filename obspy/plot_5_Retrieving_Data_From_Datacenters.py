@@ -43,7 +43,7 @@ for key in sorted(URL_MAPPINGS.keys()):
 #
 # 以下示例申请了美国 ``IU`` 台网 ``ANMO`` 和 ``AFI`` 台站 ``LHZ`` 分量
 # 从 ``2010-02-27 06:45 (UTC)`` 开始的 60 分钟连续波形数据，结果作为
-# Stream 对象返回。
+# ``Stream``` 对象返回。
 # 如果想同时发送多个请求可以使用 ``get_waveforms_bulk()`` 方法。
 
 from obspy import UTCDateTime
