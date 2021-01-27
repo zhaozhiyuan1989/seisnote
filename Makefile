@@ -18,3 +18,13 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+# 删除所有运行产生的文件
+clean:
+	rm -rf build
+	rm -rf source/buildpy
+	rm obspy/events.kml obspy/inv.pz obspy/singlechannel.pdf obspy/test.mseed
+
+# obspy 绘图需要从服务器下载数据，较为缓慢，设置命令不运行任何 python 脚本
+nofig:
+	make html SPHINXOPTS="-D sphinx_gallery_conf.filename_pattern='/no_'"

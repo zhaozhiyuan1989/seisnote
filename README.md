@@ -19,16 +19,37 @@
 
 1.  下载文档源码
 
-        git clone git@github.com:zhaozhiyuan1989/seisnote.git
+        $ git clone git@github.com:zhaozhiyuan1989/seisnote.git
 
 2.  安装所需依赖
 
-        cd seisnote
-        pip install -r requirements.txt
+- 利用 pip 安装依赖
+
+        $ cd seisnote
+        $ pip install -r requirements.txt
+
+- 利用 conda 安装依赖，**强烈建议**
+
+        $ cd seisnote
+        # 利用 environment.yml 构建运行环境
+        $ conda env create  # 也许你需要为 conda 添加国内镜像源
+        # 激活运行环境
+        $ conda activate seisnote
+        # 查看所有环境
+        # conda info -e
+        # 你可以随时删除创建的 seisnote 环境
+        # conda activate base
+        # conda remove -n seisnote --all
+
 
 3.  编译生成 HTML 格式的文档。生成的文档位于 `build/html/` 目录下
 
-        make html
+        # 只编译，不运行 python 脚本
+        $ make nofig  
+        
+        # 如果想在网页中查看脚本运行结果，执行如下命令
+        $ make clean  # 删除临时文件
+        $ make html   # 脚本运行时会从服务器下载数据，可能造成编译缓慢卡死
 
 4.  维护
 

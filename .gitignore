@@ -3,3 +3,7 @@ _build
 .vscode
 .DS_Store
 buildpy
+obspy/events.kml
+obspy/inv.pz
+obspy/singlechannel.pdf
+obspy/test.mseed

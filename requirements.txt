@@ -3,8 +3,3 @@ sphinx_rtd_theme
 sphinx-cjkspace
 sphinx-gallery
 sphinx-tabs
-obspy
-numpy
-matplotlib
-Cython
-cartopy
