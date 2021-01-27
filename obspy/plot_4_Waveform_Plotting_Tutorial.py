@@ -53,7 +53,6 @@ plt.show()
 # 绘制 ``dayplot`` 图
 # ---------------------------
 #
-# sphinx_gallery_thumbnail_number = 4
 # 绘制 ``dayplot`` 图，参数含义参考 ``plot()``：
 
 fig = plt.figure()
@@ -70,6 +69,7 @@ st.plot(type="dayplot", interval=60, right_vertical_labels=True,
             vertical_scaling_range=2e4, one_tick_per_line=True,  # 振幅缩放比例2e4, Y轴每个刻度都标上时间
             color=['k', 'r', 'b', 'g'], show_y_UTC_label=False,
             events={'min_magnitude': 6.5}, show=False, fig=fig)  # 标上6.5级以上地震
+# sphinx_gallery_thumbnail_number = 4
 plt.show()
 
 #%%

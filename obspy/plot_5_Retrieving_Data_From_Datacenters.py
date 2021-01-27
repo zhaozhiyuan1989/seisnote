@@ -43,20 +43,21 @@ for key in sorted(URL_MAPPINGS.keys()):
 #
 # 以下示例申请了美国 ``IU`` 台网 ``ANMO`` 和 ``AFI`` 台站 ``LHZ`` 分量
 # 从 ``2010-02-27 06:45 (UTC)`` 开始的 60 分钟连续波形数据，结果作为
-# ``Stream``` 对象返回。
+# ``Stream`` 对象返回。
 # 如果想同时发送多个请求可以使用 ``get_waveforms_bulk()`` 方法。
 
 from obspy import UTCDateTime
 t = UTCDateTime("2010-02-27T06:45:00.000")
 st = client.get_waveforms("IU", "ANMO,AFI", "00", "LHZ", t, t + 60 * 60)  # 多个参数使用逗号分隔
 print(st)
-st.plot(size=(800,300)) 
+#st.plot(size=(800,300)) 
 
 #%%
 # 当然也可以使用通配符作为参数：
 
 st = client.get_waveforms("IU", "A*", "1?", "LHZ", t, t + 5)  
-st.plot()
+print(st)
+#st.plot()
 
 #%%
 # 申请波形数据时添加仪器响应信息：
@@ -65,7 +66,8 @@ t = UTCDateTime("2012-12-14T10:36:01.6Z")
 st = client.get_waveforms("TA", "E42A", "*", "BH?", t+300, t+400,
                           attach_response=True)  
 st.remove_response(output="VEL")   # 去除仪器响应
-st.plot(size=(800,400))
+print(st)
+#st.plot(size=(800,400))
 
 #%%
 # **get_waveforms_bulk**\ (bulk, quality=None, minimumlength=None, 
@@ -88,7 +90,8 @@ bulk = [("IU", "ANMO", "*", "BHZ", t1, t2),
           ("IU", "AFI", "1?", "BHE", t1, t3),
             ("GR", "GRA1", "*", "BH*", t2, t3)]
 st = client.get_waveforms_bulk(bulk)
-st.plot()
+print(st)
+#st.plot()
 
 #%%
 # 包含有效 ``request`` 的字符串:
@@ -99,7 +102,8 @@ bulk = 'quality=B\n' + \
          'IU AFI 1? BHE 2010-02-27 2010-02-27T00:00:04\n' + \
          'GR GRA1 * BH? 2010-02-27 2010-02-27T00:00:02\n'
 st = client.get_waveforms_bulk(bulk)
-st.plot()
+print(st)
+#st.plot()
 
 # 包含 request 的文件:
 #st = client.get_waveforms_bulk("request.txt", attach_response=True)
