@@ -22,7 +22,7 @@
    :caption: 中文手册
    :hidden:
 
-   buildpy/obspy_gallery/index
+   obspydoc/index
 
 
 地震学学习笔记。
