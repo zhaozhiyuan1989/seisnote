@@ -11,10 +11,11 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: 地震学软件
+   :caption: 常用软件
    :hidden:
 
-   seismology/index
+   software/seismology/index
+   software/general/index
 
 
 .. toctree::
