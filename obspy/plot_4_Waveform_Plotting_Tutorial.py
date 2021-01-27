@@ -1,5 +1,5 @@
 """
-4. Waveform Plotting Tutorial
+波形绘制
 ================================
 
 本节主要介绍如何利用 ``Stream`` 的 ``plot()`` 方法
@@ -7,54 +7,74 @@
 """
 
 from obspy import read
+import matplotlib.pyplot as plt
 
 #%%
-# 从服务器读取单分量波形数据
+# 绘制单分量波形
+# --------------------
+#
+# 从服务器读取单分量波形数据：
 
 singlechannel = read('https://examples.obspy.org/COP.BHZ.DK.2009.050')  
-print(singlechannel)
+
+# 绘制单分量波形数据，默认大小为 800x250
+# 添加 outfile 参数后图片保存到本地
+singlechannel.plot(outfile='singlechannel.pdf')  
+
 
 #%%
-# 分别读取三分量波形数据并叠加
+# 绘制三分量波形
+# ---------------------
+#
+# 分别读取三分量波形数据并叠加：
 
 threechannels = read('https://examples.obspy.org/COP.BHE.DK.2009.050')
 threechannels += read('https://examples.obspy.org/COP.BHN.DK.2009.050')
 threechannels += read('https://examples.obspy.org/COP.BHZ.DK.2009.050') 
-print(threechannels)
+
+# 脚本自动执行后不显示图片，引入 matplotlib 模块显示图像
+fig = plt.figure()
+threechannels.plot(show=False, fig=fig)  # 绘制多分量波形数据，大小为 800x400
+plt.show()
 
 #%%
-# 绘制单分量波形数据，默认大小为 800x250
-#  
-singel = singlechannel.plot()  
-singlechannel.plot(outfile='singlechannel.pdf')  # 保存图像
-three = threechannels.plot(size=(800,400))  # 绘制多分量波形数据，大小为 800x400
+# 自定义绘图
+# ---------------------------
+# 自定义绘图，更多选项参考 ``plot()`` 方法：
 
-#%%
-# 自定义绘图，更多选项参考 plot() 方法
-
+fig = plt.figure()
 dt = singlechannel[0].stats.starttime
-singe = singlechannel.plot(color='red', number_of_ticks=5,
+singlechannel.plot(color='red', number_of_ticks=5,
                     tick_rotation=15, tick_format='%I:%M %p',
-                    starttime=dt + 60*60, endtime=dt + 60*60 + 120)
+                    starttime=dt + 60*60, endtime=dt + 60*60 + 120, show=False, fig=fig)
+plt.show()
 
 #%%
-# 绘制 dayplot 图，参数含义参考 plot()
+# 绘制 ``dayplot`` 图
+# ---------------------------
+#
+# 绘制 ``dayplot`` 图，参数含义参考 ``plot()``：
 
-single = singlechannel.plot(type='dayplot', interval=20) 
-
+fig = plt.figure()
+singlechannel.plot(type='dayplot', interval=20, show=False, fig=fig) 
+plt.show()
 
 #%%
-# 将地震信息添加到 dayplot 中
+# 将地震信息添加到 ``dayplot`` 中：
 
-from obspy import read
+fig = plt.figure()
 st = read("https://examples.obspy.org/GR.BFO..LHZ.2012.108")
 st.filter("lowpass", freq=0.1, corners=2)  # 低通滤波
-stplot = st.plot(type="dayplot", interval=60, right_vertical_labels=True,
+st.plot(type="dayplot", interval=60, right_vertical_labels=True,
             vertical_scaling_range=2e4, one_tick_per_line=True,  # 振幅缩放比例2e4, Y轴每个刻度都标上时间
             color=['k', 'r', 'b', 'g'], show_y_UTC_label=False,
-            events={'min_magnitude': 6.5})  # 标上6.5级以上地震
+            events={'min_magnitude': 6.5}, show=False, fig=fig)  # 标上6.5级以上地震
+# sphinx_gallery_thumbnail_number = 4
+plt.show()
 
 #%%
+# 绘制 ``section`` 图
+# -------------------------
 
 import matplotlib.pyplot as plt
 from matplotlib.transforms import blended_transform_factory
@@ -91,10 +111,6 @@ for tr in st:
 
 st.filter('bandpass', freqmin=0.1, freqmax=10)
 
-
-
-#%%
-# 绘制 section 图
 fig = plt.figure(figsize=(12, 4))
 st.plot(type='section', plot_dx=20e3, recordlength=100,  # x 轴间距为 20km，y 轴长度为 100s
         time_down=True, linewidth=.25, grid_linewidth=.25, show=False, fig=fig)  # 后面还要添加信息时，必须带上后两项
@@ -108,7 +124,8 @@ for tr in st:
 plt.show()
 
 #%%
-# 利用 matplotlib 自定义绘制
+# 利用 ``matplotlib`` 自定义绘图
+# -----------------------------------
 
 import matplotlib.pyplot as plt
 from obspy import read

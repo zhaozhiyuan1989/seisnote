@@ -1,5 +1,5 @@
 """
-2. UTCDateTime
+世界标准时间
 ====================
 
 本节简单介绍 ``UTCDateTime`` 函数。
@@ -12,13 +12,13 @@
 from obspy import UTCDateTime
 
 #%%
-# 打印参考时间和距离零时刻3600秒的时间
+# 打印参考时间和距离零时刻3678秒的时间：
 
-UTCDateTime(0) 
-UTCDateTime(3600) 
+print(UTCDateTime(0)) 
+print(UTCDateTime(3678)) 
 
 #%%
-# 不同日期格式
+# 不同日期格式：
 
 a = UTCDateTime("2012-09-07T12:15:00")  
 b = UTCDateTime(2018, 9, 17, 15, 18, 1.1)
@@ -26,12 +26,12 @@ print('a:  ' ,a)
 print('b:  ' ,b)
 
 #%%
-# 加上时区
+# 加上时区：
 
-UTCDateTime("2012-09-07T12:15:00+08:00")  
+print(UTCDateTime("2012-09-07T12:15:00+08:00"))  
 
 #%%
-# 查看时间的属性
+# 查看时间的属性：
 
 time = UTCDateTime("2019-04-07T12:15:00")
 print('Year:  ', time.year)
@@ -40,7 +40,7 @@ print('Julday:  ', time.julday)
 print('Weekday:  ', time.weekday)
 
 #%%
-# 时间运算
+# 时间运算：
 
 time1 = UTCDateTime(2018,12,31)
 time2 = UTCDateTime("2019-05-01T00:00:00")
