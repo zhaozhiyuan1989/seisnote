@@ -6,7 +6,8 @@
    :caption: 计算机基础
    :hidden:
 
-   computer/setup
+   computer/wsl_setup
+   computer/ubuntu_setup
    computer/linux101
    computer/filesys
 
