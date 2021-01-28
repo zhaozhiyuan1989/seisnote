@@ -14,8 +14,16 @@
    :caption: 常用软件
    :hidden:
 
-   software/seismology/index
-   software/general/index
+   software/distaz
+   software/gmt
+   software/mseed2ascii
+   software/mseed2sac
+   software/oh-my-cap
+   software/rdseed
+   software/sac
+   software/sactools
+   software/taup
+   software/velest
 
 
 .. toctree::

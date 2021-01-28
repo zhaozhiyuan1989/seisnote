@@ -72,7 +72,11 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # Cross-refering other projects
 # https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html
 intersphinx_mapping = {
-    "docs.gmt-china": ("https://docs.gmt-china.org/latest/", None),
+    "gmtdoc": ("https://docs.gmt-china.org/latest/", None),
+    "sacdoc": ("https://seisman.github.io/SAC_Docs_zh/", None),
+    "seismo_software": ("https://seismo-learn.org/software/", None),
+
+    
 }
 
 
