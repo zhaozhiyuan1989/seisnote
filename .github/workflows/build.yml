@@ -15,7 +15,7 @@ jobs:
         shell: bash -l {0}
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.6.0
+        uses: styfle/cancel-workflow-action@0.7.0
         with:
           access_token: ${{ github.token }}
 
@@ -35,20 +35,11 @@ jobs:
 
 #     # Setup Miniconda
       - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v2.0.0
+        uses: conda-incubator/setup-miniconda@v2
         with:
-          python-version: ${{ matrix.python-version }}
-          channels: conda-forge
+          activate-environment: seisnote
+          environment-file: environment.yml
           miniconda-version: "latest"
- 
-      # Install build dependencies from conda-forge
-      - name: Install build dependencies
-        run: conda install pip obspy sphinx sphinx-gallery sphinx_rtd_theme sphinx-tabs cartopy
-
-      - name: Install sphinx-cjkspace
-        run: pip install sphinx-cjkspace
-
-
 
       - name: Build sphinx document
         run: make dirhtml
