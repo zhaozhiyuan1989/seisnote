@@ -6,25 +6,31 @@
    :caption: 计算机基础
    :hidden:
 
-   computer/index
-
+   computer/setup
+   computer/linux101
+   computer/filesys
 
 .. toctree::
    :maxdepth: 3
    :caption: 常用软件
    :hidden:
 
+   software/anaconda
    software/distaz
+   software/focmec
    software/gmt
+   software/hypodd
+   software/hypoinverse
+   software/matlab
    software/mseed2ascii
    software/mseed2sac
+   software/obspy
    software/oh-my-cap
    software/rdseed
    software/sac
    software/sactools
    software/taup
    software/velest
-
 
 .. toctree::
    :maxdepth: 3
@@ -33,8 +39,7 @@
 
    obspydoc/index
 
-
-地震学学习笔记。
+持续更新中。。。
 
 .. admonition:: 免责声明
 

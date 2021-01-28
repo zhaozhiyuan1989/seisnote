@@ -1,4 +1,4 @@
-reseed
+rdseed
 ============
 
 :软件来源: http://ds.iris.edu/pub/programs/
@@ -10,8 +10,10 @@ reseed
 
 rdseed 用于将 SEED 格式的数据转换为 SAC 格式。
 
-`官方消息 <http://ds.iris.edu/ds/nodes/dmc/manuals/rdseed/>`__\ 
-今后不再更新和维护 rdseed 。
+.. warning::
+
+    `官方消息 <http://ds.iris.edu/ds/nodes/dmc/manuals/rdseed/>`__\ ，
+    今后不再更新和维护 rdseed 。
 
 安装
 --------
@@ -25,7 +27,7 @@ rdseed 用于将 SEED 格式的数据转换为 SAC 格式。
     $ mv rdseed ~/bin
 
 经测试，用 GitHub 上下载的 rdseed 可能无法正确
-解压缩波形文件，继续采用老的二进制包。
+解压缩波形文件，可以选择继续采用老的二进制包。
 
 .. code-block:: bash
 

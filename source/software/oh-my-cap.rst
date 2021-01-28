@@ -12,14 +12,17 @@ CAP 是计算震源机制的一种常用方法。
 
 王亮博士基于 gCAP1.0 建立了 Oh My CAP 开源项目。
 
+.. warning::
+
+    经测试，在 Ubuntu 下需要从源码编译 SAC，否则 fk 和 gcap 可能
+    会出现类似 ``recompile with -fPIE`` 的编译报错。
+
 安装
 --------
 
 请参考项目主页。
 
 本项目需要安装 :doc:`rdseed`\ 、:doc:`SAC <sac>`\ 、:doc:`GMT4 <gmt>`\ 、:doc:`taup`\ 、fk、gcap、pssac。
-
-经测试，在 Ubuntu 下需要从源码编译 SAC，否则 fk 和 gcap 可能会出现类似 ``recompile with -fPIE`` 的编译报错。
 
 .. code-block:: bash
 

@@ -36,10 +36,10 @@
         # 激活运行环境
         $ conda activate seisnote
         # 查看所有环境
-        # conda info -e
+        $ conda info -e
         # 你可以随时删除创建的 seisnote 环境
-        # conda activate base
-        # conda remove -n seisnote --all
+        $ conda activate base
+        $ conda remove -n seisnote --all
 
 
 3.  编译生成 HTML 格式的文档。生成的文档位于 `build/html/` 目录下

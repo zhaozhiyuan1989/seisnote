@@ -2,7 +2,7 @@ VELEST
 ============
 
 :软件来源: http://www.seg.ethz.ch/software/velest.html
-:适用平台: Linux、macOS
+:适用平台: Linux
 :推荐阅读: 暂无
 :更新日期: 2021-01-27
 

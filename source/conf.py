@@ -75,6 +75,7 @@ intersphinx_mapping = {
     "gmtdoc": ("https://docs.gmt-china.org/latest/", None),
     "sacdoc": ("https://seisman.github.io/SAC_Docs_zh/", None),
     "seismo_software": ("https://seismo-learn.org/software/", None),
+    "seismo_101": ("https://seismo-learn.org/seismology101/", None),
 
     
 }
