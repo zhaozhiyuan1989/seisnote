@@ -23,12 +23,12 @@
 
 2.  安装所需依赖
 
-- 利用 pip 安装依赖
+- 方法一：利用 pip 安装依赖
 
         $ cd seisnote
         $ pip install -r requirements.txt
 
-- 利用 conda 安装依赖，**强烈建议**
+- 方法二：利用 conda 安装依赖，**强烈建议**
 
         $ cd seisnote
         # 利用 environment.yml 构建运行环境
@@ -49,7 +49,7 @@
         
         # 如果想在网页中查看脚本运行结果，执行如下命令
         $ make clean  # 删除临时文件
-        $ make html   # 脚本运行时会从服务器下载数据，可能造成编译缓慢卡死
+        $ make html   # 脚本运行时会从服务器下载数据，网络不好可能造成编译缓慢卡死
 
 4.  维护
 

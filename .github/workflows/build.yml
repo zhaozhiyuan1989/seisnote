@@ -39,17 +39,7 @@ jobs:
         with:
           activate-environment: seisnote
           environment-file: environment.yml
-          python-version: ${{ matrix.python-version }}
           miniconda-version: "latest"
- 
-#      # Install build dependencies from conda-forge
-#      - name: Install build dependencies
-#        run: conda install pip obspy sphinx sphinx-gallery sphinx_rtd_theme sphinx-tabs cartopy
-
-      - name: Install sphinx-cjkspace
-        run: pip install sphinx-cjkspace
-
-
 
       - name: Build sphinx document
         run: make dirhtml
