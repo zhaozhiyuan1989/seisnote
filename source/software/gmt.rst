@@ -503,12 +503,12 @@ GMT 是地球科学最广泛使用的制图软件之一，具有强大的绘图�
 
 - GMT6 下单行模式运行 GMT 命令会报错： ``sh: 1: xdg-open: not found``
 
-这是因为单行命令会默认打开绘图结果，但是服务器或者 WSL 通常没有安装 ``xdg-open``\ ，
-在 ``end`` 模块中有介绍，可以设置环境变量 ``GMT_END_SHOW=off``。
+ 这是因为单行命令会默认打开绘图结果，但是服务器或者 WSL 通常没有安装 ``xdg-open``\ ，
+ 在 :doc:`gmtdoc:module/end` 模块中有介绍，可以设置环境变量 ``GMT_END_SHOW=off``。
 
 - GMT4 下 ``make`` 时报错： ``xgrid_Panner.c:4:10: fatal error: X11/Xaw/Scrollbar.h: No such file or directory`` 
 
-登录 https://pkgs.org/ ，在网页右上角搜索 ``Scrollbar.h`` ，然后在 **Search** 一栏选择 **Files**，
-根据筛选条件对 **Filter** 进行修改，找到所需的包后点击查看， 
-例如在 Ubuntu 下 **Package name** 为 **libxaw7-dev**，
-直接 ``sudo apt install libxaw7-dev`` 即可解决。
+ 登录 https://pkgs.org/ ，在网页右上角搜索 ``Scrollbar.h`` ，然后在 **Search** 一栏选择 **Files**，
+ 根据筛选条件对 **Filter** 进行修改，找到所需的包后点击查看， 
+ 例如在 Ubuntu 下 **Package name** 为 **libxaw7-dev**，
+ 直接 ``sudo apt install libxaw7-dev`` 即可解决。

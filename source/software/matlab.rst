@@ -44,14 +44,14 @@ MATLAB
 
 - **Windows 下在 Jupyter 中添加 MATLAB kernel**
 
-如果 MATLAB 安装在系统盘，很可能没有写入权限，这时需要在有权限的地方编译，
-在 MATLAB 窗口输入以下命令
+ 如果 MATLAB 安装在系统盘，很可能没有写入权限，这时需要在有权限的地方编译，
+ 在 MATLAB 窗口输入以下命令
 
-.. code-block:: matlab
+ .. code-block:: matlab
 
     cd (fullfile(matlabroot,'extern','engines','python'))
     system('python setup.py build --build-base="d:\builddir" install') % 安装完成之后可以删除builddir文件夹
     system('pip install matlab_kernel')
     system('jupyter kernelspec list')
 
-详情可参考 `MATLAB官方说明 <https://ww2.mathworks.cn/help/matlab/matlab_external/install-matlab-engine-api-for-python-in-nondefault-locations.html>`__\ 。
+ 详情可参考 `MATLAB 官方说明 <https://ww2.mathworks.cn/help/matlab/matlab_external/install-matlab-engine-api-for-python-in-nondefault-locations.html>`__\ 。
