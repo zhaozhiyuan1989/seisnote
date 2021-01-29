@@ -27,6 +27,8 @@ ObsPy 是一款针对地震领域开发的 Python 库，功能十分齐全。
 示例
 ----------
 
+首先看一个 ObsPy 的\ `简单示例 <https://nbviewer.jupyter.org/gist/krischer/3e655576e4d17e6c95f2>`__\ 。
+
 ObsPy 提供了一系列功能强大的模块可以处理几乎所有格式的地震数据，
 以下简单介绍几个实用功能，ObsPy 的详细介绍请查看中文手册部分。
 

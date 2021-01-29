@@ -55,3 +55,9 @@ MATLAB
     system('jupyter kernelspec list')
 
  详情可参考 `MATLAB 官方说明 <https://ww2.mathworks.cn/help/matlab/matlab_external/install-matlab-engine-api-for-python-in-nondefault-locations.html>`__\ 。
+
+- **MATLAB 如何调用 cpt 颜色表**
+
+ MATLAB 数值计算功能非常强大，但是自带的颜色表较少而且也不那么好看，
+ Kelly Kearney 提供了一个基于 MATLAB 的 `cptcmap <https://github.com/kakearney/cptcmap-pkg>`__ 函
+ 数用来调用 样式更加丰富和漂亮的 cpt 格式颜色表。

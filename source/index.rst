@@ -17,9 +17,11 @@
    :hidden:
 
    software/anaconda
+   software/cpdf
    software/distaz
    software/focmec
-   software/gmt
+   software/gmt4
+   software/gmt6
    software/hypodd
    software/hypoinverse
    software/matlab

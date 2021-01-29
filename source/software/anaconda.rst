@@ -13,8 +13,8 @@ Anaconda 是一个用于科学计算的 Python 发行版，
 
 .. warning::
 
-    安装 Anaconda 后再安装 :doc:`gmt` 可能会出现找不到依赖库的情况，
-    把 Anaconda 环境变量注释后再安装 :doc:`gmt` ，完成后再取消注释即可。
+    安装 Anaconda 后再安装 GMT 可能会出现找不到依赖库的情况，
+    把 Anaconda 环境变量注释后再安装 GMT，完成后再取消注释即可。
 
 安装
 --------
