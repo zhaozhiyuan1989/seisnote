@@ -8,6 +8,13 @@ PyGMT
 PyGMT 为 GMT 提供了 Python 接口，是一个适用于处理地理空间
 和地球物理数据并制作精美图形的模块。
 
+学习资源
+-----------
+
+- `PyGMT 官方文档 <https://www.pygmt.org/latest/>`__
+- `ROSES: Unit 8 PyGMT <https://www.bilibili.com/video/BV1Ak4y1y7d9>`__
+
+
 安装
 ---------
 
@@ -57,12 +64,5 @@ PyGMT 为 GMT 提供了 Python 接口，是一个适用于处理地理空间
           share dir: /home/zhao/anaconda3/envs/pygmt/share/gmt
           version: 6.1.1
 
-
-学习资源
------------
-
-- `PyGMT 官方文档 <https://www.pygmt.org/latest/>`__
-- `ROSES: Unit 8 PyGMT <https://www.bilibili.com/video/BV1Ak4y1y7d9>`__
-
 主要内容
-----------
+-------------

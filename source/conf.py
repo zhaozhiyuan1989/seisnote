@@ -16,7 +16,7 @@
 import sys
 from sphinx_gallery.sorting import FileNameSortKey
 from datetime import datetime
-
+from pygmt.sphinx_gallery import PyGMTScraper
 
 # -- Project information -----------------------------------------------------
 
@@ -114,6 +114,10 @@ html_context = {
 
 # sphinx-gallery configuration
 sphinx_gallery_conf = {
+    
+    'matplotlib_animations': True,
+    
+    "image_scrapers": (PyGMTScraper(),),
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # path to your example scripts
