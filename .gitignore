@@ -8,3 +8,4 @@ obspy/inv.pz
 obspy/singlechannel.pdf
 obspy/test.mseed
 gen_modules
+pygmtdoc/

@@ -23,7 +23,7 @@
 
 2.  安装所需依赖
 
-- 方法一：利用 pip 安装依赖
+- 方法一：利用 pip 安装依赖，不能执行 python 脚本
 
         $ cd seisnote
         $ pip install -r requirements.txt
@@ -44,12 +44,19 @@
 
 3.  编译生成 HTML 格式的文档。生成的文档位于 `build/html/` 目录下
 
-        # 只编译，不运行 python 脚本
-        $ make nofig  
-        
-        # 如果想在网页中查看脚本运行结果，执行如下命令
-        $ make clean  # 删除临时文件
-        $ make html   # 脚本运行时会从服务器下载数据，网络不好可能造成编译缓慢卡死
+        # 执行时 obspy 手册中的 python 脚本会自动运行
+        # 网络不好可能会卡死
+        $ make html
+
+        # 可以执行如下命令只运行 pygmt 手册中的脚本
+        $ make pyg
+
+        # 执行如下命令不自动运行所有 python 脚本
+        $ make nofig
+
+        # 删除临时文件
+        $ make clean 
+
 
 4.  维护
 

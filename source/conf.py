@@ -76,7 +76,7 @@ intersphinx_mapping = {
     "sacdoc": ("https://seisman.github.io/SAC_Docs_zh/", None),
     "seismo_software": ("https://seismo-learn.org/software/", None),
     "seismo_101": ("https://seismo-learn.org/seismology101/", None),
-
+    "pygmt": ("https://www.pygmt.org/latest/", None),
     
 }
 
@@ -114,11 +114,13 @@ html_context = {
 
 # sphinx-gallery configuration
 sphinx_gallery_conf = {
+    # Remove the "Download all examples" button from the top level gallery
+    "download_all_examples": False,
     # path to your example scripts
     #'examples_dirs': ['../obspy', '../obspy1'],
-    'examples_dirs': ['../obspy'],
+    'examples_dirs': ['../obspy','../pygmt'],
     # path to where to save gallery generated output
-    'gallery_dirs': ['obspydoc'],
+    'gallery_dirs': ['obspydoc','pygmtdoc'],
     # specify that examples should be ordered according to filename
     'within_subsection_order': FileNameSortKey,
     # directory where function granular galleries are stored
