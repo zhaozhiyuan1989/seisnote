@@ -20,7 +20,7 @@ PyGMT 为 GMT 提供了 Python 接口，是一个适用于处理地理空间
     $ conda config --prepend channels conda-forge
 
     # 创建 pygmt 运行环境，python 版本需要大于 3.6
-    $ conda create --name pygmt python=3.8 pip numpy pandas xarray netcdf4 packaging gmt
+    $ conda create --name pygmt python=3.8 pip numpy pandas xarray netcdf4 packaging gmt ipython
 
     # 查看所有环境名称
     $ conda info -e
