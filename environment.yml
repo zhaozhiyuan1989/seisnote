@@ -5,7 +5,7 @@ channels:
 dependencies:
     - python==3.8
     - pip
-    # obspy numpy pandas xarray netcdf4 packaging gmt
+    # obspy 
     - obspy
     - cartopy
     # pygmt
@@ -14,20 +14,6 @@ dependencies:
     - xarray
     - netCDF4
     - packaging
-    - black
-    - blackdoc
-    - coverage[toml]
-    - docformatter
-    - flake8
-    - ipython
-    - isort>=5
-    - jupyter
-    - matplotlib
-    - nbsphinx
-    - pylint
-    - pytest-cov
-    - pytest-mpl
-    - pytest>=6.0
     - ipython
     - gmt
     - pygmt
