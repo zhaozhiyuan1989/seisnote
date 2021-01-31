@@ -27,7 +27,6 @@
    software/matlab
    software/mseed2ascii
    software/mseed2sac
-   software/obspy
    software/oh-my-cap
    software/rdseed
    software/sac
@@ -41,6 +40,7 @@
    :hidden:
 
    obspydoc/index
+   pygmtdoc/index
 
 持续更新中。。。
 

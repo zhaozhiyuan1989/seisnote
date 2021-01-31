@@ -23,10 +23,14 @@ help:
 clean:
 	rm -rf build
 	rm -rf source/gen_modules
+	rm -rf source/pygmtdoc
 	rm -rf source/obspydoc
 	rm obspy/events.kml obspy/inv.pz obspy/singlechannel.pdf obspy/test.mseed
 
 
-# obspy 绘图需要从服务器下载数据，较为缓慢，设置命令不运行任何 python 脚本
+# obspy 绘图需要从服务器下载数据，较为缓慢，设置命令只运行 pygmt 文件夹内的 python 脚本
 nofig:
-	make html SPHINXOPTS="-D sphinx_gallery_conf.filename_pattern='/no_'"
+	make html SPHINXOPTS="-D sphinx_gallery_conf.filename_pattern='/no'"
+
+pyg:
+	make html SPHINXOPTS="-D sphinx_gallery_conf.filename_pattern='/pygmt/plot_'"

@@ -31,7 +31,7 @@ for key in sorted(URL_MAPPINGS.keys()):
 # ---------------
 # 
 # **get_waveforms**\ (network, station, location, channel, starttime, endtime, 
-# quality=None, minimumlength=None, longestonly=None, filename=None, attach_response=False, **kwargs)
+# quality=None, minimumlength=None, longestonly=None, filename=None, attach_response=False, \*\*kwargs)
 # 
 # 这里只介绍 ``filename`` 参数和 ``attach_response`` 参数。
 # 
@@ -71,7 +71,7 @@ print(st)
 
 #%%
 # **get_waveforms_bulk**\ (bulk, quality=None, minimumlength=None, 
-# longestonly=None, filename=None, attach_response=False, **kwargs)
+# longestonly=None, filename=None, attach_response=False, \*\*kwargs)
 # 
 # ``bulk`` 可以同时提交多个申请， 符合要求的 ``bulk`` 有以下形式：
 # 
@@ -119,7 +119,7 @@ print(st)
 # maxmagnitude=None, magnitudetype=None, includeallorigins=None,
 # includeallmagnitudes=None, includearrivals=None, eventid=None, limit=None, 
 # offset=None, orderby=None, catalog=None, contributor=None, updatedafter=None,
-# filename=None, **kwargs)
+# filename=None, \*\*kwargs)
 # 
 # 与 ``get_waveforms`` 类似，申请结果返回 ``Catalog`` 对象。
 #
@@ -147,7 +147,7 @@ cat.plot(projection="ortho")
 # maxlongitude=None, latitude=None, longitude=None, minradius=None,
 # maxradius=None, level=None, includerestricted=None,
 # includeavailability=None, updatedafter=None, matchtimeseries=None,
-# filename=None, format=None, **kwargs)
+# filename=None, format=None, \*\*kwargs)
 # 
 # 申请结果返回 ``Inventory`` 对象。
 

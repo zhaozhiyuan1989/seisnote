@@ -5,11 +5,22 @@ channels:
 dependencies:
     - python==3.8
     - pip
+    # obspy 
     - obspy
+    - cartopy
+    # pygmt
+    - numpy
+    - pandas
+    - xarray
+    - netCDF4
+    - packaging
+    - ipython
+    - gmt
+    - pygmt
+    # sphinx
     - sphinx
     - sphinx-gallery
     - sphinx_rtd_theme
     - sphinx-tabs
-    - cartopy
     - pip:
       - sphinx-cjkspace
