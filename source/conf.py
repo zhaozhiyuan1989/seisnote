@@ -77,6 +77,7 @@ intersphinx_mapping = {
     "seismo_software": ("https://seismo-learn.org/software/", None),
     "seismo_101": ("https://seismo-learn.org/seismology101/", None),
     "pygmt": ("https://www.pygmt.org/latest/", None),
+    "obspy": ("https://docs.obspy.org/", None),
     
 }
 

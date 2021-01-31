@@ -2,11 +2,11 @@
 世界标准时间
 ====================
 
-本节简单介绍 ``UTCDateTime`` 函数。
+“时间问题”是申请地震数据最基本的问题，利用 ObsPy 申请数据时需要
+用 :class:`UTCDateTime <obspy.core.utcdatetime.UTCDateTime>` 对象
+来控制发震时刻、申请波形数据的起始时间和结束时间等。
 
-“时间问题”是申请地震数据最基本的问题，
-利用 ``ObsPy`` 申请数据时需要用 ``UTCDateTime`` 函数
-来确定发震时刻、申请波形数据的起始时间和结束时间等。
+首先从 ``obspy`` 模块中导入 ``UTCDateTime``：
 """
 
 from obspy import UTCDateTime
