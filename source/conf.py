@@ -117,7 +117,7 @@ sphinx_gallery_conf = {
     
     'matplotlib_animations': True,
     
-    "image_scrapers": (PyGMTScraper(),),
+    "image_scrapers": (PyGMTScraper(),'matplotlib'),
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # path to your example scripts
