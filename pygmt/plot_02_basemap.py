@@ -55,6 +55,7 @@ fig.show()
 # 可以通过把 **+t**\ *title* 传递给 ``frame`` 选项来
 # 设置图片标题。如下所示，可以使用列表将多个参数同时传递给 ``frame`` 选项：
 
+# sphinx_gallery_thumbnail_number = 4
 fig = pygmt.Figure()
 # region="IS" specifies Iceland using the ISO country code
 fig.coast(shorelines="1/0.5p", region="IS", projection="M25c")
