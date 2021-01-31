@@ -2,12 +2,11 @@
 波形绘制
 ================================
 
-本节主要介绍如何利用 ``Stream`` 的 ``plot()`` 方法
-来绘制单分量或多分量的地震波形。
+本节主要介绍如何利用 :class:`Stream <obspy.core.stream.Stream>` 的
+:meth:`plot() <obspy.core.stream.Stream.plot>` 方法绘制地震波形。
 """
 
 from obspy import read
-import matplotlib.pyplot as plt
 
 #%%
 # 绘制单分量波形
@@ -33,6 +32,7 @@ threechannels += read('https://examples.obspy.org/COP.BHN.DK.2009.050')
 threechannels += read('https://examples.obspy.org/COP.BHZ.DK.2009.050') 
 
 # 脚本自动执行后不显示图片，引入 matplotlib 模块显示图像
+import matplotlib.pyplot as plt
 fig = plt.figure()
 threechannels.plot(show=False, fig=fig)  # 绘制多分量波形数据，大小为 800x400
 plt.show()
@@ -40,7 +40,7 @@ plt.show()
 #%%
 # 自定义绘图
 # ---------------------------
-# 自定义绘图，更多选项参考 ``plot()`` 方法：
+# 自定义绘图，更多选项参考 :meth:`plot() <obspy.core.stream.Stream.plot>` 方法：
 
 fig = plt.figure()
 dt = singlechannel[0].stats.starttime
@@ -53,7 +53,7 @@ plt.show()
 # 绘制 ``dayplot`` 图
 # ---------------------------
 #
-# 绘制 ``dayplot`` 图，参数含义参考 ``plot()``：
+# 绘制 ``dayplot`` 图，参数含义参考 :meth:`plot() <obspy.core.stream.Stream.plot>` 方法：
 
 fig = plt.figure()
 singlechannel.plot(type='dayplot', interval=20, show=False, fig=fig) 
@@ -66,9 +66,9 @@ fig = plt.figure()
 st = read("https://examples.obspy.org/GR.BFO..LHZ.2012.108")
 st.filter("lowpass", freq=0.1, corners=2)  # 低通滤波
 st.plot(type="dayplot", interval=60, right_vertical_labels=True,
-            vertical_scaling_range=2e4, one_tick_per_line=True,  # 振幅缩放比例2e4, Y轴每个刻度都标上时间
+            vertical_scaling_range=2e4, one_tick_per_line=True,  # 振幅缩放比例 2e4, Y 轴每个刻度都标上时间
             color=['k', 'r', 'b', 'g'], show_y_UTC_label=False,
-            events={'min_magnitude': 6.5}, show=False, fig=fig)  # 标上6.5级以上地震
+            events={'min_magnitude': 6.5}, show=False, fig=fig)  # 标上 6.5级 以上地震
 # sphinx_gallery_thumbnail_number = 4
 plt.show()
 
