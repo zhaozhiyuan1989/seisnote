@@ -22,6 +22,6 @@ dependencies:
     - sphinx-gallery
     - sphinx_rtd_theme
     - sphinx-tabs
-    - sphinx_copybutton
+    - sphinx-copybutton
     - pip:
       - sphinx-cjkspace

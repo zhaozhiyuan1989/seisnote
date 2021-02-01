@@ -111,7 +111,7 @@ fig.show()
 # 通过 :func:`pygmt.datasets.load_japan_quakes` 函数加载日本附近海啸诱发地震，
 # 数据以 :class:`pandas.DataFrame` 形式加载。
 
-# sphinx_gallery_thumbnail_number = 3
+# sphinx_gallery_thumbnail_number = 7
 data = pygmt.datasets.load_japan_quakes()  # 从服务器加载数据
 
 # 绘图区域一般比数据区域大一点

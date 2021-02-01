@@ -3,4 +3,4 @@ sphinx_rtd_theme
 sphinx-cjkspace
 sphinx-gallery
 sphinx-tabs
-sphinx_copybutton
+sphinx-copybutton
