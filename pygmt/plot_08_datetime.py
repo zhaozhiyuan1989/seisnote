@@ -5,9 +5,13 @@
 PyGMT 支持以下类型的日期数据：
 
 - :class:`numpy.datetime64`
+
 - :class:`pandas.DatetimeIndex`
+
 - :class:`xarray.DataArray`
+
 - ISO 格式的字符串（比如 ``YYYY-MM-DD``，``YYYY-MM-DDTHH`` 和 ``YYYY-MM-DDTHH:MM:SS``）
+
 - Python 内置的 :class:`datetime.datetime` 和 :class:`datetime.date`
 
 将上述任意一种格式的日期数据传递给 :meth:`pygmt.Figure.plot` 的 ``x``、``y`` 选项即可。
