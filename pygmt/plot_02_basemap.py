@@ -5,11 +5,16 @@
 底图的边框、标签、刻度等样式均由 :class:`pygmt.Figure` 类的 ``frame`` 选项
 控制。
 
+.. note::
+
+    可结合《:doc:`gmtdoc:tutorial/basemap`》
+    和《:doc:`gmtdoc:module/basemap` 模块》学习。
+
 """
 
 import pygmt
 
-########################################################################################
+#%%
 # 绘制底图
 # ----------
 #
@@ -17,18 +22,18 @@ import pygmt
 # 例如，使用墨卡托投影来绘制世界海岸线时：
 
 fig = pygmt.Figure()
-fig.coast(shorelines="1/0.5p", region=[-180, 180, -60, 60], projection="M25c")
+fig.coast(shorelines="1/0.5p", region=[-180, 180, -60, 60], projection="M16c")
 fig.show()
 
-########################################################################################
+#%%
 # 可以通过 :meth:`pygmt.Figure.basemap` 方法的 ``frame="f"`` 选项添加默认边框：
 
 fig = pygmt.Figure()
-fig.coast(shorelines="1/0.5p", region=[-180, 180, -60, 60], projection="M25c")
+fig.coast(shorelines="1/0.5p", region=[-180, 180, -60, 60], projection="M16c")
 fig.basemap(frame="f")
 fig.show()
 
-########################################################################################
+#%%
 # 刻度线和网格线
 # --------------------
 #
@@ -36,19 +41,19 @@ fig.show()
 # 自动确定刻度线标注方式：
 
 fig = pygmt.Figure()
-fig.coast(shorelines="1/0.5p", region=[-180, 180, -60, 60], projection="M25c")
+fig.coast(shorelines="1/0.5p", region=[-180, 180, -60, 60], projection="M16c")
 fig.basemap(frame="a")
 fig.show()
 
-########################################################################################
+#%%
 # 修改 ``frame="ag"`` 后可自动添加网格线:
 
 fig = pygmt.Figure()
-fig.coast(shorelines="1/0.5p", region=[-180, 180, -60, 60], projection="M25c")
+fig.coast(shorelines="1/0.5p", region=[-180, 180, -60, 60], projection="M16c")
 fig.basemap(frame="ag")
 fig.show()
 
-########################################################################################
+#%%
 # 标题
 # -----
 #
@@ -57,21 +62,21 @@ fig.show()
 
 # sphinx_gallery_thumbnail_number = 4
 fig = pygmt.Figure()
-# region="IS" specifies Iceland using the ISO country code
-fig.coast(shorelines="1/0.5p", region="IS", projection="M25c")
+# 使用 region="IS" 绘制 Iceland 区域 （ISO country code）
+fig.coast(shorelines="1/0.5p", region="IS", projection="M16c")
 fig.basemap(frame=["a", "+tIceland"])
 fig.show()
 
-########################################################################################
+#%%
 # 当标题内容存在空格时，可以采用单、双引号相结合的方式传递参数，如下所示：
 
 fig = pygmt.Figure()
-# region="TT" specifies Trinidad and Tobago
-fig.coast(shorelines="1/0.5p", region="TT", projection="M25c")
+# 使用 region="TT" 指定 Trinidad 和 Tobago 区域
+fig.coast(shorelines="1/0.5p", region="TT", projection="M16c")
 fig.basemap(frame=["a", '+t"Trinidad and Tobago"'])
 fig.show()
 
-########################################################################################
+#%%
 # 轴标签
 # -----------
 #
@@ -83,7 +88,7 @@ fig.show()
 fig = pygmt.Figure()
 fig.basemap(
     region=[0, 10, 0, 20],
-    projection="X10c/8c",
+    projection="X6c/8c",
     frame=["WSne", "xa+lx-axis", "yf+ly-axis"],
 )
 fig.show()

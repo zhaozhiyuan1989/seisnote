@@ -4,11 +4,17 @@
 
 PyGMT 利用 :meth:`pygmt.Figure.coast` 方法绘制海岸线，
 该方法不仅可以绘制海岸线和湖岸线，还可以绘制比例尺和行政边界等。
+
+.. note::
+
+    可结合《:doc:`gmtdoc:tutorial/coastline`》
+    和《:doc:`gmtdoc:module/coast` 模块》学习。
+
 """
 
 import pygmt
 
-########################################################################################
+#%%
 # 海岸线
 # ----------
 #
@@ -20,7 +26,7 @@ fig.basemap(region="g", projection="W15c", frame=True)
 fig.coast(shorelines=True)
 fig.show()
 
-########################################################################################
+#%%
 # 海岸线分为四个等级（ *level* 取 1-4）：
 #
 # 1. coastline：海岸线
@@ -37,7 +43,7 @@ fig.basemap(region="g", projection="W15c", frame=True)
 fig.coast(shorelines="1/0.5p,black")
 fig.show()
 
-########################################################################################
+#%%
 # 允许通过列表形式一次性传递多个不同等级海岸线的绘制参数：
 
 fig = pygmt.Figure()
@@ -45,7 +51,7 @@ fig.basemap(region="g", projection="W15c", frame=True)
 fig.coast(shorelines=["1/1p,black", "2/0.5p,red"])
 fig.show()
 
-########################################################################################
+#%%
 # 海岸线数据分为 5 个不同精度版本，通过 ``resolution`` 选项指定要使用的数据精度：
 #
 # 1. ``"c"``: crude
@@ -61,7 +67,7 @@ for res in ["c", "l", "i", "h", "f"]:
     fig.shift_origin(xshift="5c")
 fig.show()
 
-########################################################################################
+#%%
 # 使用 ``land`` 和 ``water`` 选项可以指定如何填充陆地与水体：
 
 fig = pygmt.Figure()
@@ -69,7 +75,7 @@ fig.basemap(region="g", projection="W10i", frame=True)
 fig.coast(land="#666666", water="skyblue")
 fig.show()
 
-########################################################################################
+#%%
 # 行政边界
 # --------------------
 #
@@ -84,8 +90,7 @@ fig.show()
 import pygmt
 
 fig = pygmt.Figure()
-# Make a Sinusoidal projection map of the Americas with automatic ticks
-fig.basemap(region=[-150, -30, -60, 60], projection="I-90/8i", frame="afg")
-# Plot each level of the boundaries dataset with a different color.
+fig.basemap(region=[-150, -30, -60, 60], projection="I-90/8c", frame="afg")
+# 用不同的颜色绘制不同等级的行政边界
 fig.coast(borders=["1/0.5p,black", "2/0.5p,red", "3/0.5p,blue"], land="gray")
 fig.show()

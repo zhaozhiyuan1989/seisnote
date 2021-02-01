@@ -78,6 +78,10 @@ intersphinx_mapping = {
     "seismo_101": ("https://seismo-learn.org/seismology101/", None),
     "pygmt": ("https://www.pygmt.org/latest/", None),
     "obspy": ("https://docs.obspy.org/", None),
+    "python": ("https://docs.python.org/3/", None),
+    "numpy": ("https://docs.scipy.org/doc/numpy/", None),
+    "pandas": ("http://pandas.pydata.org/pandas-docs/stable/", None),
+    "xarray": ("http://xarray.pydata.org/en/stable/", None),
     
 }
 
