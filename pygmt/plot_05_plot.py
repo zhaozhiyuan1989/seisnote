@@ -145,8 +145,8 @@ fig.plot(data=data, style="w", color="lightgray", pen="2p,black")
 fig.show()
 
 #%%
-# 示例
-# -----------
+# 示例：绘制震中分布图
+# ---------------------
 #
 # 通过 PyGMT 提供的 :mod:`pygmt.datasets` 包可以访问 GMT 服务器上
 # 的示例数据。第一次访问时，数据会自动下载并保存到 GMT 的缓存目录中（通常为 ``~/.gmt/cache``）。
