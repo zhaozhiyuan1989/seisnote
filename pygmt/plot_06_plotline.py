@@ -1,12 +1,12 @@
 """
-绘制符号
+绘制线条
 ============
 
-利用 PyGMT 的 :meth:`pygmt.Figure.plot` 可以绘制多种常见的符号类型。
+利用 PyGMT 的 :meth:`pygmt.Figure.plot` 可以绘制线条。
 
 .. note::
 
-    可结合《:doc:`gmtdoc:tutorial/symbols`》
+    可结合《:doc:`gmtdoc:tutorial/lines`》
     和《:doc:`gmtdoc:module/plot` 模块》学习。
 
 """
@@ -102,49 +102,6 @@ fig.plot(x=x, y=y, style="c0.6c", color="blue", pen="1p,red", transparency=trans
 fig.show()
 
 #%%
-# 绘制不同的符号
-# -----------------
-#
-# 向 :meth:`pygmt.Figure.plot` 的 ``style`` 选项传递不同的参数可以
-# 绘制多种类型的符号。
-#
-# - **e**：椭圆 ``[[lon, lat, direction, major_axis, minor_axis]]``
-# - **j**：旋转的矩形 ``[[lon, lat, direction, width, height]]``
-# - **r**：矩形 ``[[lon, lat, width, height]]``
-# - **R**：圆角矩形 ``[[lon, lat, width, height, radius]]``
-# - **w**：饼形楔形 ``[[lon, lat, radius, startdir, stopdir]]`` 最后两个参数是从水平逆时针方向给出的方向
-#
-# **E**、**J** 和 **W** 与 **e**、**j** 和 **w** 相似，但是期望输入的是地理方位角和距离。
-
-import numpy as np
-import pygmt
-
-fig = pygmt.Figure()
-fig.basemap(region=[0, 6, 0, 2], projection="x3c", frame=True)
-
-# 椭圆
-data = np.array([[0.5, 1, 45, 3, 1]])
-fig.plot(data=data, style="e", color="orange", pen="2p,black")
-
-# 旋转的矩形
-data = np.array([[1.5, 1, 120, 5, 0.5]])
-fig.plot(data=data, style="j", color="red3", pen="2p,black")
-
-# 矩形
-data = np.array([[3, 1, 4, 1.5]])
-fig.plot(data=data, style="r", color="dodgerblue", pen="2p,black")
-
-# 圆角矩形
-data = np.array([[4.5, 1, 1.25, 4, 0.5]])
-fig.plot(data=data, style="R", color="seagreen", pen="2p,black")
-
-# 饼形楔形
-data = np.array([[5.5, 1, 2.5, 45, 330]])
-fig.plot(data=data, style="w", color="lightgray", pen="2p,black")
-
-fig.show()
-
-#%%
 # 示例
 # -----------
 #
@@ -154,7 +111,7 @@ fig.show()
 # 通过 :func:`pygmt.datasets.load_japan_quakes` 函数加载日本附近海啸诱发地震，
 # 数据以 :class:`pandas.DataFrame` 形式加载。
 
-# sphinx_gallery_thumbnail_number = 8
+# sphinx_gallery_thumbnail_number = 7
 data = pygmt.datasets.load_japan_quakes()  # 从服务器加载数据
 
 # 绘图区域一般比数据区域大一点
