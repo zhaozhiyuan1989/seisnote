@@ -137,3 +137,9 @@ ax.plot(tr.times("matplotlib"), tr.data, "b-")
 ax.xaxis_date()
 fig.autofmt_xdate()
 plt.show()
+
+#%%
+# 删除临时文件
+
+import os
+os.remove("singlechannel.pdf")

@@ -69,3 +69,11 @@ cat.write('events', format='kml')  # 以 kml格式存储至本地
 inv = obspy.read_inventory()  # 从服务器读取元数据示例文件
 print(inv)  # 打印元数据信息
 inv.write('inv.pz', format='sacpz')  # 以 pz 格式存储至本地
+
+#%%
+# 删除临时文件
+
+import os
+os.remove("test.mseed")
+os.remove("events.kml")
+os.remove("inv.pz")

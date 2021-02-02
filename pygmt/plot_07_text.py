@@ -18,7 +18,6 @@
 # 若需要添加文字，则必须给出文字的 X 和 Y 坐标以及具体的文字，
 # 分别赋予 ``x``、``y`` 以及 ``text`` 选项。
 
-import os
 import pygmt
 
 # sphinx_gallery_thumbnail_number = 5
@@ -106,8 +105,10 @@ with open("examples.txt", "w") as f:
 # 最后一列是文字内容，顺序不能变！
 # 设置 angle/font/justify 为 true 表示文本中有这些列
 fig.text(textfiles="examples.txt", angle=True, font=True, justify=True)
+fig.show()
 
 # 删除临时文件
+import os
 os.remove("examples.txt")
 
-fig.show()
+

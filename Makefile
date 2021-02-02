@@ -25,7 +25,6 @@ clean:
 	rm -rf source/gen_modules
 	rm -rf source/pygmtdoc
 	rm -rf source/obspydoc
-	rm obspy/events.kml obspy/inv.pz obspy/singlechannel.pdf obspy/test.mseed
 
 
 # obspy 绘图需要从服务器下载数据，较为缓慢，设置命令不运行所有 python 脚本
