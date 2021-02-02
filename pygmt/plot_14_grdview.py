@@ -16,6 +16,7 @@ grid = pygmt.datasets.load_earth_relief(resolution="05m", region=[-108, -103, 35
 # 利用  :meth:`pygmt.Figure.grdview` 读取网格文件后绘制 3D 曲面，
 # ``perspective`` 选项控制了视角，``zsize`` 控制了 3D 图在 Z 方向上的高度：
 
+# sphinx_gallery_thumbnail_number = 3
 fig = pygmt.Figure()
 fig.grdview(
     grid=grid,

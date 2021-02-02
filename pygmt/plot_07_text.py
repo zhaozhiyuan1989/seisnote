@@ -69,6 +69,7 @@ fig.show()
 # ---------------
 
 fig = pygmt.Figure()
+# sphinx_gallery_thumbnail_number = 6
 fig.basemap(region=[0, 4, 0, 4], projection="X5c", frame="WSen")
 for i in range(0, 360, 30):
     fig.text(text=f"`          {i}@.", x=2, y=2, justify="LM", angle=i)

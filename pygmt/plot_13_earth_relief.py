@@ -20,6 +20,7 @@ grid = pygmt.datasets.load_earth_relief(resolution="30m")
 # 默认采用等距圆柱投影和 turbo 颜色表。
 
 fig = pygmt.Figure()
+# sphinx_gallery_thumbnail_number = 4
 fig.grdimage(grid=grid)
 fig.show()
 

@@ -19,6 +19,7 @@ grid = pygmt.datasets.load_earth_relief(resolution="05m", region=[-92.5, -82.5, 
 # 等高线。在下例中，等高线间距为 500m，每 1000m 进行注释，默认采用等距圆柱投影：
 
 fig = pygmt.Figure()
+# sphinx_gallery_thumbnail_number = 3
 fig.grdcontour(grid=grid)  # 地形网格文件
 fig.show()
 
