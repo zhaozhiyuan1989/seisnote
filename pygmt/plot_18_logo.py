@@ -18,7 +18,3 @@ fig.basemap(region=[0, 10, 0, 2], projection="X6c", frame=True)
 fig.logo(position="jTR+o0.3c/0.6c+w3c")
 
 fig.show()
-
-# 删除临时文件
-import os
-os.remove('logo.png')
