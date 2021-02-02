@@ -26,3 +26,7 @@ fig.image(
 )
 
 fig.show()
+
+# 删除临时文件
+import os
+os.remove('GMT6_Summit_2019.jpg')

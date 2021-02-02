@@ -122,7 +122,7 @@ html_context = {
 sphinx_gallery_conf = {
     
     'matplotlib_animations': True,
-    
+    'remove_config_comments': True,
     "image_scrapers": (PyGMTScraper(),'matplotlib'),
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
