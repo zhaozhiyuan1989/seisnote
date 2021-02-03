@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>GMT6 &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.js"></script>
+        <script src="../../_static/sphinx_tabs/tabs.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="hypoDD" href="../hypodd/" />
+    <link rel="prev" title="GMT4" href="../gmt4/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gmt4/">GMT4</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GMT6</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">常见问题</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../obspydoc/">ObsPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pygmtdoc/">PyGMT</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>GMT6</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/software/gmt6.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gmt6">
+<h1>GMT6<a class="headerlink" href="#gmt6" title="永久链接至标题">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">软件来源</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://mirrors.ustc.edu.cn">http://mirrors.ustc.edu.cn</a></p>
+</dd>
+<dt class="field-even">适用平台</dt>
+<dd class="field-even"><p>Linux、macOS、Windows</p>
+</dd>
+<dt class="field-odd">推荐阅读</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.gmt-china.org/latest/" title="(在 GMT中文手册 v6.1)"><span>GMT中文手册</span></a></p>
+</dd>
+<dt class="field-even">更新日期</dt>
+<dd class="field-even"><p>2021-01-27</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<p>GMT 是地球科学最广泛使用的制图软件之一，具有强大的绘图功能和数据处理功能。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>目前 <a class="reference internal" href="../gmt4/"><span class="doc">GMT4</span></a> 和 GMT5 都已经停止维护，建议直接学习 GMT6。</p>
+</div>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>如果已经安装了 <a class="reference internal" href="../anaconda/"><span class="doc">Anaconda</span></a> ，安装 GMT 过程中可能会出现找不到依赖库的情况，把 <a class="reference internal" href="../anaconda/"><span class="doc">Anaconda</span></a> 环境变量注释后再安装 GMT，完成后再取消注释即可。</p>
+</div>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-0-0 docutils container">
+<div class="docutils container">
+<p>Ubuntu</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-0-1 docutils container">
+<div class="docutils container">
+<p>Centos7</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-0-2 docutils container">
+<div class="docutils container">
+<p>Windows</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0-0 active docutils container">
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># 安装编译所需软件包</span>
+ $ sudo apt update
+ $ sudo apt install build-essential cmake libcurl4-gnutls-dev libnetcdf-dev
+ <span class="c1"># 安装可选软件包</span>
+ $ sudo apt install ghostscript gdal-bin libgdal-dev libglib2.0-dev libpcre3-dev libfftw3-dev liblapack-dev
+ <span class="c1"># 安装制作动画所需的软件包</span>
+ $ sudo apt install graphicsmagick ffmpeg
+ <span class="c1"># 下载软件包</span>
+ $ <span class="nb">cd</span> ~/software/GMT-src
+ $ wget http://mirrors.ustc.edu.cn/gmt/gmt-6.1.1-src.tar.gz
+ $ wget http://mirrors.ustc.edu.cn/gmt/gshhg-gmt-2.3.7.tar.gz
+ $ wget http://mirrors.ustc.edu.cn/gmt/dcw-gmt-1.1.4.tar.gz
+ <span class="c1"># 解压三个压缩文件</span>
+ $ tar -xvf gmt-6.1.1-src.tar.gz
+ $ tar -xvf gshhg-gmt-2.3.7.tar.gz
+ $ tar -xvf dcw-gmt-1.1.4.tar.gz
+ <span class="c1"># 将 gshhg 和 dcw 数据复制到 gmt 的 share 目录下</span>
+ $ mv gshhg-gmt-2.3.7 gmt-6.1.1/share/gshhg-gmt
+ $ mv dcw-gmt-1.1.4 gmt-6.1.1/share/dcw-gmt
+ <span class="c1"># 切换到 gmt 源码目录下</span>
+ $ <span class="nb">cd</span> gmt-6.1.1
+ <span class="c1"># 用文本编辑器新建并打开 CMake 用户配置文件</span>
+ $ vim cmake/ConfigUser.cmake
+     <span class="nb">set</span> <span class="o">(</span>CMAKE_INSTALL_PREFIX <span class="s2">&quot;/home/zhao/opt/GMT-6.1.1&quot;</span><span class="o">)</span>
+     <span class="nb">set</span> <span class="o">(</span>GMT_USE_THREADS TRUE<span class="o">)</span>
+     <span class="nb">set</span> <span class="o">(</span>GMT_ENABLE_OPENMP TRUE<span class="o">)</span>
+ <span class="c1"># 注意，此处新建的 build 文件夹位于 gmt-6.1.1 目录下，不是 gmt-6.1.1/cmake 目录下</span>
+ <span class="c1"># 编译安装，如果先安装了 anaconda，需要先注释掉环境变量</span>
+ $ mkdir build
+ $ <span class="nb">cd</span> build/
+ $ cmake ..
+ $ make
+ $ make install
+ <span class="c1"># 添加环境变量</span>
+ $ vim ~/.bashrc    <span class="c1"># 取消 anaconda 的注释</span>
+     <span class="c1"># GMT6</span>
+     <span class="nb">export</span> <span class="nv">GMT6HOME</span><span class="o">=</span>/home/zhao/opt/GMT-6.1.1
+     <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">GMT6HOME</span><span class="si">}</span>/bin:<span class="nv">$PATH</span>
+     <span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span>:<span class="si">${</span><span class="nv">GMT6HOME</span><span class="si">}</span>/lib64
+     <span class="c1"># 关闭单行命令完成自动打开图片</span>
+     <span class="nb">export</span> <span class="nv">GMT_END_SHOW</span><span class="o">=</span>off
+     <span class="c1"># 将数据、配置文件放到自定义路径</span>
+     <span class="nb">export</span> <span class="nv">GMT_DATADIR</span><span class="o">=</span>/home/zhao/data/gmtdata/
+     <span class="nb">export</span> <span class="nv">GMT_CACHEDIR</span><span class="o">=</span>/home/zhao/data/gmtdata/cache
+     <span class="nb">export</span> <span class="nv">GMT_USERDIR</span><span class="o">=</span>/home/zhao/data/gmtdata/
+ $ <span class="nb">source</span> ~/.bashrc
+ <span class="c1"># GMT 添加中文字体</span>
+ $ vim <span class="nv">$GMT_DATADIR</span>/PSL_custom_fonts.txt
+     STSong-Light--UniGB-UTF8-H  <span class="m">0</span>.700    <span class="m">1</span>
+     STFangsong-Light--UniGB-UTF8-H  <span class="m">0</span>.700    <span class="m">1</span>
+     STHeiti-Regular--UniGB-UTF8-H   <span class="m">0</span>.700   <span class="m">1</span>
+     STKaiti-Regular--UniGB-UTF8-H   <span class="m">0</span>.700   <span class="m">1</span>
+     STSong-Light--UniGB-UTF8-V  <span class="m">0</span>.700    <span class="m">1</span>
+     STFangsong-Light--UniGB-UTF8-V  <span class="m">0</span>.700    <span class="m">1</span>
+     STHeiti-Regular--UniGB-UTF8-V   <span class="m">0</span>.700   <span class="m">1</span>
+     STKaiti-Regular--UniGB-UTF8-V   <span class="m">0</span>.700   <span class="m">1</span>
+ <span class="c1"># ghostscript 配置中文</span>
+ $ sudo apt install poppler-data
+ $ sudo apt install fonts-arphic-uming fonts-arphic-ukai  <span class="c1"># 安装 gs 默认 Linux 字体</span>
+ <span class="c1"># 新建 winfonts 文件夹</span>
+ $ sudo mkdir /usr/share/fonts/winfonts/
+ <span class="c1"># 将 Windows 下的中文字体拷贝过来</span>
+ $ sudo cp /mnt/c/windows/fonts/<span class="o">{</span>simhei.ttf,simkai.ttf,simsun.ttc,simfang.ttf<span class="o">}</span> /usr/share/fonts/winfonts
+ <span class="c1"># 修改 gs 中文配置文件</span>
+ $ sudo vim /etc/ghostscript/cidfmap.d/90gs-cjk-resource-gb1.conf
+     % 原配置文件的内容，与 STSong-Light 等相关的四行必须删除
+     /BousungEG-Light-GB &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/truetype/arphic/uming.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /GBZenKai-Medium    &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/truetype/arphic/ukai.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /Song-Medium /GBZenKai-Medium <span class="p">;</span>
+     /Adobe-GB1      /BousungEG-Light-GB <span class="p">;</span>
+     /Adobe-GB1-Bold /GBZenKai-Medium <span class="p">;</span>
+     % 新增 Windows 字体的支持
+     /STSong-Light &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simsun.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STFangsong-Light &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simfang.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STHeiti-Regular &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simhei.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STKaiti-Regular &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simkai.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+ $ sudo update-gsfontmap
+ <span class="c1"># 中文测试</span>
+ $ vim gmt6.1.1-cn-test.sh
+     <span class="c1">#!/bin/bash</span>
+     gmt begin GMT_Chinese png
+     gmt <span class="nb">set</span> FONT_TITLE 25p,41,black
+     gmt <span class="nb">set</span> FONT_LABEL 15p,39,black
+     gmt text -R0/8/0/4 -JX12c/4c -Bxaf+l<span class="s2">&quot;X轴&quot;</span> -Byaf+l<span class="s2">&quot;Y轴&quot;</span> -BWSen+t<span class="s2">&quot;中文标题&quot;</span> -F+f <span class="s">&lt;&lt; EOF</span>
+<span class="s">     2 3.5 25p,39,black 中文宋体</span>
+<span class="s">     2 2.5 25p,40,blue  中文仿宋</span>
+<span class="s">     2 1.5 25p,41,red   中文黑体</span>
+<span class="s">     2 0.5 25p,42,green 中文楷体</span>
+<span class="s">     4 3.5 25p,43,black 中文宋体</span>
+<span class="s">     5 3.5 25p,44,blue  中文仿宋</span>
+<span class="s">     6 3.5 25p,45,red   中文黑体</span>
+<span class="s">     7 3.5 25p,46,green 中文楷体</span>
+<span class="s">     EOF</span>
+     gmt end
+ $ bash gmt6.1.1-cn-test.sh
+ <span class="c1"># 将数据服务器更改为科大镜像</span>
+ $ gmt <span class="nb">set</span> GMT_DATA_SERVER http://china.generic-mapping-tools.org
+ $ mv gmt.conf <span class="nv">$GMT_DATADIR</span>/
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0-1 docutils container">
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># 安装 epel-release</span>
+ $ sudo yum install epel-release
+ <span class="c1"># 启用 GMT 官方仓库</span>
+ $ sudo yum install yum-plugin-copr
+ $ sudo yum copr <span class="nb">enable</span> genericmappingtools/gmt
+ <span class="c1"># 安装最新版GMT</span>
+ $ sudo yum install gmt
+
+ <span class="c1"># 当有新版本发布时可直接更新</span>
+ $ sudo yum update gmt
+ <span class="c1"># ghostscript 配置中文</span>
+
+ $ sudo yum install ghostscript-chinese-zh_CN
+ <span class="c1"># 新建 winfonts 文件夹</span>
+ $ sudo mkdir /usr/share/fonts/winfonts/
+ <span class="c1"># 将 Windows 下的中文字体拷贝过来</span>
+ $ sudo cp /mnt/c/windows/fonts/<span class="o">{</span>simhei.ttf,simkai.ttf,simsun.ttc,simfang.ttf<span class="o">}</span> /usr/share/fonts/winfonts
+ <span class="c1"># 修改 gs 中文配置文件</span>
+ $ sudo vim /usr/share/ghostscript/conf.d/cidfmap.zh_CN
+     % 原配置文件的内容，与 STSong-Light 等相关的四行必须删除
+     /BousungEG-Light-GB &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/truetype/arphic/uming.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /GBZenKai-Medium    &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/truetype/arphic/ukai.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /Song-Medium /GBZenKai-Medium <span class="p">;</span>
+     /Adobe-GB1      /BousungEG-Light-GB <span class="p">;</span>
+     /Adobe-GB1-Bold /GBZenKai-Medium <span class="p">;</span>
+     % 新增 Windows 字体的支持
+     /STSong-Light &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simsun.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STFangsong-Light &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simfang.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STHeiti-Regular &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simhei.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STKaiti-Regular &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simkai.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+ <span class="c1"># 添加环境变量</span>
+ $ vim ~/.bashrc
+     <span class="c1"># 将数据、配置文件放到自定义路径</span>
+     <span class="nb">export</span> <span class="nv">GMT_DATADIR</span><span class="o">=</span>/home/zhao/data/gmtdata/
+     <span class="nb">export</span> <span class="nv">GMT_CACHEDIR</span><span class="o">=</span>/home/zhao/data/gmtdata/cache
+     <span class="nb">export</span> <span class="nv">GMT_USERDIR</span><span class="o">=</span>/home/zhao/data/gmtdata/
+ $ <span class="nb">source</span> ~/.bashrc
+ <span class="c1"># GMT 添加中文字体</span>
+ $ vim <span class="nv">$GMT_DATADIR</span>/PSL_custom_fonts.txt
+     STSong-Light--UniGB-UTF8-H  <span class="m">0</span>.700    <span class="m">1</span>
+     STFangsong-Light--UniGB-UTF8-H  <span class="m">0</span>.700    <span class="m">1</span>
+     STHeiti-Regular--UniGB-UTF8-H   <span class="m">0</span>.700   <span class="m">1</span>
+     STKaiti-Regular--UniGB-UTF8-H   <span class="m">0</span>.700   <span class="m">1</span>
+     STSong-Light--UniGB-UTF8-V  <span class="m">0</span>.700    <span class="m">1</span>
+     STFangsong-Light--UniGB-UTF8-V  <span class="m">0</span>.700    <span class="m">1</span>
+     STHeiti-Regular--UniGB-UTF8-V   <span class="m">0</span>.700   <span class="m">1</span>
+     STKaiti-Regular--UniGB-UTF8-V   <span class="m">0</span>.700   <span class="m">1</span>
+ <span class="c1"># 中文测试</span>
+ $ vim gmt6.1.1-cn-test.sh
+     <span class="c1">#!/bin/bash</span>
+     gmt begin GMT_Chinese png
+     gmt <span class="nb">set</span> FONT_TITLE 25p,41,black
+     gmt <span class="nb">set</span> FONT_LABEL 15p,39,black
+     gmt text -R0/8/0/4 -JX12c/4c -Bxaf+l<span class="s2">&quot;X轴&quot;</span> -Byaf+l<span class="s2">&quot;Y轴&quot;</span> -BWSen+t<span class="s2">&quot;中文标题&quot;</span> -F+f <span class="s">&lt;&lt; EOF</span>
+<span class="s">     2 3.5 25p,39,black 中文宋体</span>
+<span class="s">     2 2.5 25p,40,blue  中文仿宋</span>
+<span class="s">     2 1.5 25p,41,red   中文黑体</span>
+<span class="s">     2 0.5 25p,42,green 中文楷体</span>
+<span class="s">     4 3.5 25p,43,black 中文宋体</span>
+<span class="s">     5 3.5 25p,44,blue  中文仿宋</span>
+<span class="s">     6 3.5 25p,45,red   中文黑体</span>
+<span class="s">     7 3.5 25p,46,green 中文楷体</span>
+<span class="s">     EOF</span>
+     gmt end
+ $ bash gmt6.1.1-cn-test.sh
+ <span class="c1"># 将数据服务器更改为科大镜像</span>
+ $ gmt <span class="nb">set</span> GMT_DATA_SERVER http://china.generic-mapping-tools.org
+ $ mv gmt.conf <span class="nv">$GMT_DATADIR</span>/
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0-2 docutils container">
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span> 1.  安装 GMT6
+     - http://mirrors.ustc.edu.cn/gmt/bin/gmt-6.1.1-win64.exe
+     安装过程中在 Choose components 页面，除 Ghostscript 组件外所有选项都勾选上。
+     安装完成后在 C:\Users\用户名\.gmt\PSL_custom_fonts.txt 中加入如下语句:
+         STSong-Light--GB-EUC-H  0.700    1
+         STFangsong-Light--GB-EUC-H  0.700    1
+         STHeiti-Regular--GB-EUC-H   0.700   1
+         STKaiti-Regular--GB-EUC-H   0.700   1
+         STSong-Light--GB-EUC-V  0.700    1
+         STFangsong-Light--GB-EUC-V  0.700    1
+         STHeiti-Regular--GB-EUC-V   0.700   1
+         STKaiti-Regular--GB-EUC-V   0.700   1
+ 2.  安装 Ghostscript
+     - https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs950/gs950w64.exe
+     安装过程中必须勾选 Generate cidfmap for Windows CJK TrueType fonts 。
+     安装完成后必须添加环境变量：新建变量 GS_FONTPATH 并设置其值为 C:\Windows\fonts
+ 3.  安装 UnixTools
+
+     - https://gmt-china.org/data/UnixTools.zip
+     直接下载并解压到 GMT 的 bin 目录。
+ 4.  中文测试
+     脚本文件和输入数据文件都必须采用 GB2312 编码方式。
+         gmt begin map pdf,png
+         REM GMT在Windows下处理中文存在一些已知BUG
+         REM 需要设置 PS_CHAR_ENCODING 为 Standard+ 以绕过这一BUG
+         gmt set PS_CHAR_ENCODING Standard+
+         gmt set FONT_TITLE 25p,41,black
+         gmt set FONT_LABEL 15p,39,black
+         echo 2 3.5 25p,39,black 中文宋体  &gt; tmp
+         echo 2 2.5 25p,40,blue  中文仿宋 &gt;&gt; tmp
+         echo 2 1.5 25p,41,red   中文黑体 &gt;&gt; tmp
+         echo 2 0.5 25p,42,green 中文楷体 &gt;&gt; tmp
+         echo 4 3.5 25p,43,black 中文宋体 &gt;&gt; tmp
+         echo 5 3.5 25p,44,blue  中文仿宋 &gt;&gt; tmp
+         echo 6 3.5 25p,45,red   中文黑体 &gt;&gt; tmp
+         echo 7 3.5 25p,46,green 中文楷体 &gt;&gt; tmp
+         gmt text tmp -R0/8/0/4 -JX12c/4c -Bxaf+l&quot;X轴&quot; -Byaf+l&quot;Y轴&quot; -BWSen+t&quot;中文标题&quot; -F+f
+         del tmp
+         gmt end
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>常见问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>单行模式运行 GMT 命令会报错： <code class="docutils literal notranslate"><span class="pre">sh:</span> <span class="pre">1:</span> <span class="pre">xdg-open:</span> <span class="pre">not</span> <span class="pre">found</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>这是因为单行命令会默认打开绘图结果，但是服务器或者 WSL 通常没有安装 <code class="docutils literal notranslate"><span class="pre">xdg-open</span></code>，在 <a class="reference external" href="https://docs.gmt-china.org/latest/module/end/" title="(在 GMT中文手册 v6.1)"><span>end</span></a> 模块中有介绍，可以设置环境变量 <code class="docutils literal notranslate"><span class="pre">GMT_END_SHOW=off</span></code>。</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../hypodd/" class="btn btn-neutral float-right" title="hypoDD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../gmt4/" class="btn btn-neutral float-left" title="GMT4" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

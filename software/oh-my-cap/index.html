@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>OH MY CAP &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="rdseed" href="../rdseed/" />
+    <link rel="prev" title="mseed2sac" href="../mseed2sac/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gmt4/">GMT4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OH MY CAP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">常见问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">说明</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../obspydoc/">ObsPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pygmtdoc/">PyGMT</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>OH MY CAP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/software/oh-my-cap.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oh-my-cap">
+<h1>OH MY CAP<a class="headerlink" href="#oh-my-cap" title="永久链接至标题">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">软件来源</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://github.com/wangliang1989/oh-my-cap">https://github.com/wangliang1989/oh-my-cap</a></p>
+</dd>
+<dt class="field-even">适用平台</dt>
+<dd class="field-even"><p>Linux、macOS</p>
+</dd>
+<dt class="field-odd">推荐阅读</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://seismology.xyz/oh-my-cap/">oh My CAP</a></p>
+</dd>
+<dt class="field-even">更新日期</dt>
+<dd class="field-even"><p>2021-01-27</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<p>CAP 是计算震源机制的一种常用方法。</p>
+<p>王亮博士基于 gCAP1.0 建立了 Oh My CAP 开源项目。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>经测试，在 Ubuntu 下需要从源码编译 SAC，否则 fk 和 gcap 可能会出现类似 <code class="docutils literal notranslate"><span class="pre">recompile</span> <span class="pre">with</span> <span class="pre">-fPIE</span></code> 的编译报错。</p>
+</div>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>请参考项目主页。</p>
+<p>本项目需要安装 <a class="reference internal" href="../rdseed/"><span class="doc">rdseed</span></a>、<a class="reference internal" href="../sac/"><span class="doc">SAC</span></a>、<a class="reference internal" href="../gmt4/"><span class="doc">GMT4</span></a>、<a class="reference internal" href="../taup/"><span class="doc">TauP</span></a>、fk、gcap、pssac。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> fk <span class="o">&amp;&amp;</span> make
+$ <span class="nb">cd</span> ../gcap <span class="o">&amp;&amp;</span> make
+$ <span class="nb">cd</span> ../pssac <span class="o">&amp;&amp;</span> make
+
+$ cpan
+cpan<span class="o">[</span><span class="m">1</span><span class="o">]</span>&gt; install Parallel::ForkManager
+
+$ <span class="c1"># 进入 Glib 目录，生成格林函数</span>
+$ <span class="nb">cd</span> Glib
+$ perl run_fk.pl model.fk
+
+<span class="c1"># 进入 example 目录</span>
+$ <span class="nb">cd</span> ../example/
+
+<span class="c1"># 对示例数据进行预处理</span>
+$ perl process.pl <span class="m">20080418093658</span>
+<span class="c1"># 警告 WARNING potential for aliasing. new delta: 0.200000 data delta: 0.025000 可忽略</span>
+
+<span class="c1"># 生成权重文件</span>
+$ perl weight.pl <span class="m">20080418093658</span>
+
+<span class="c1"># 反演并查看反演结果</span>
+$ perl inversion.pl <span class="m">20080418093658</span>
+<span class="c1"># 路径 20080418093658 下面的 model_*.pdf为各个深度的结果和波形拟合图</span>
+
+<span class="c1"># 绘制并查看深度反演结果</span>
+$ perl get_depth.pl <span class="m">20080418093658</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>常见问题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Warning:</span> <span class="pre">flag=21</span> <span class="pre">=&gt;</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">0.0/57.8/</span> <span class="pre">6.4</span> <span class="pre">is</span> <span class="pre">at</span> <span class="pre">boundary</span></code></p>
+<p>可能某个台站位于节面上，特点是 P 波非常的弱，在权重文件中去除这个台站就可以。当然，也可以选择忽略这个警告，对结果没有太大影响。</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">no</span> <span class="pre">minimum</span> <span class="pre">found</span> <span class="pre">...</span></code></p>
+<p>首先查看格林函数有没有正确生成。然后利用 <a class="reference internal" href="../sac/"><span class="doc">SAC</span></a> 查看波形有无问题，有的台站可能预处理后波形“消失”了，在权重文件中删除这个台站即可。利用 RESP 去除仪器响应波形数据消失的情况下改用 PZ 试试。</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>说明<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>Cap 研究中需要的频段是 0.05 到 0.2 Hz，f1|f2|f3|f4 可以取为 0.02|0.03|0.5|1，这个基本是最小的范围，也可以取更大范围，比如 0.01|0.02|20|30，因为 <code class="docutils literal notranslate"><span class="pre">trans</span></code> 是第一次滤波，<code class="docutils literal notranslate"><span class="pre">cap.pl</span></code> 中 <code class="docutils literal notranslate"><span class="pre">-C</span></code> 选项进行了第二次实际滤波，另外，地震的能量主要部分也不在高频，震级越小，信号越高频，所以小震机制解是难点。</p>
+<p>初始速度模型很关键，台站的选取也影响到最后的结果。可以选取四象限分布较好的震中距范围在 100-300km 范围内的几个信噪比较好的台站进行反演，因为震中距太大波形不清晰，震中距太小面波没到。</p>
+<p>反演结果中 ISO、CLVD 代表非构造地震的成分，默认不反演，可以在 <code class="docutils literal notranslate"><span class="pre">event.conf</span></code> 中用 <code class="docutils literal notranslate"><span class="pre">-J:</span> <span class="pre">0/0.1/0/0.1</span></code> 控制。 深度反演结果中横坐标为深度，纵坐标为误差，<code class="docutils literal notranslate"><span class="pre">h</span></code>
+后的两个数为拟合结果最好的深度以及深度估计范围。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../rdseed/" class="btn btn-neutral float-right" title="rdseed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../mseed2sac/" class="btn btn-neutral float-left" title="mseed2sac" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Linux 基础 &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="文件管理" href="../filesys/" />
+    <link rel="prev" title="Ubuntu 安装配置" href="../ubuntu_setup/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Linux 基础</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#curl"><code class="docutils literal notranslate"><span class="pre">curl</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tldr"><code class="docutils literal notranslate"><span class="pre">tldr</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trap-debug"><code class="docutils literal notranslate"><span class="pre">trap</span> <span class="pre">...</span> <span class="pre">DEBUG</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x11"><code class="docutils literal notranslate"><span class="pre">x11</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt4/">GMT4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../obspydoc/">ObsPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pygmtdoc/">PyGMT</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Linux 基础</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/computer/linux101.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="linux">
+<h1>Linux 基础<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">推荐阅读</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://101.lug.ustc.edu.cn/">https://101.lug.ustc.edu.cn/</a></p>
+</dd>
+<dt class="field-even">更新日期</dt>
+<dd class="field-even"><p>2021-01-27</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<div class="section" id="curl">
+<h2><code class="docutils literal notranslate"><span class="pre">curl</span></code><a class="headerlink" href="#curl" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">curl:</span> <span class="pre">error</span> <span class="pre">while</span> <span class="pre">loading</span> <span class="pre">shared</span> <span class="pre">libraries:</span> <span class="pre">libssl.so.1.0.0:</span> <span class="pre">cannot</span> <span class="pre">open</span> <span class="pre">shared</span> <span class="pre">object</span> <span class="pre">file:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code>
+<code class="docutils literal notranslate"><span class="pre">curl:</span> <span class="pre">symbol</span> <span class="pre">lookup</span> <span class="pre">error:</span> <span class="pre">curl:</span> <span class="pre">undefined</span> <span class="pre">symbol:</span> <span class="pre">curl_mime_free</span></code></p>
+<p>升级 conda <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">update</span> <span class="pre">conda</span></code> 解决问题。</p>
+</div>
+<div class="section" id="tldr">
+<h2><code class="docutils literal notranslate"><span class="pre">tldr</span></code><a class="headerlink" href="#tldr" title="永久链接至标题">¶</a></h2>
+<p>非常简洁的命令用法查询工具。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt install tldr
+$ tldr tar  <span class="c1"># 查询 tar 的用法</span>
+</pre></div>
+</div>
+<p>执行命令会自动克隆远程仓库到 <code class="docutils literal notranslate"><span class="pre">~/.tldr</span></code> 文件夹。</p>
+</div>
+<div class="section" id="trap-debug">
+<h2><code class="docutils literal notranslate"><span class="pre">trap</span> <span class="pre">...</span> <span class="pre">DEBUG</span></code><a class="headerlink" href="#trap-debug" title="永久链接至标题">¶</a></h2>
+<p>解决 SHELL 指令同时显示命令和执行结果，以 <code class="docutils literal notranslate"><span class="pre">echo</span></code> 开头的行只显示结果的问题。</p>
+<p><code class="docutils literal notranslate"><span class="pre">trap</span> <span class="pre">DEBUG</span></code> 表示读取每行的命令赋予变量 <code class="docutils literal notranslate"><span class="pre">$BASH_COMMAND</span></code>，先执行 <code class="docutils literal notranslate"><span class="pre">trap</span> <span class="pre">DEBUG</span></code> 中间的命令后在执行 <code class="docutils literal notranslate"><span class="pre">$BASH_COMMAND</span></code>。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat test.sh
+    <span class="nb">trap</span> <span class="s1">&#39;[[ $BASH_COMMAND != echo* ]] &amp;&amp; echo $BASH_COMMAND&#39;</span> DEBUG
+    <span class="nb">echo</span> 显示 GMT 的版本号
+    gmt --version
+
+$ bash test.sh
+    显示 GMT 的版本号
+    gmt --version
+    <span class="m">6</span>.1.1
+</pre></div>
+</div>
+</div>
+<div class="section" id="x11">
+<h2><code class="docutils literal notranslate"><span class="pre">x11</span></code><a class="headerlink" href="#x11" title="永久链接至标题">¶</a></h2>
+<p>seisman:</p>
+<p>The biggest difference is: libx11-6 only provides libraries, while libx11-dev provides both header files and libraries (libx11-dev depends on libx11-6).</p>
+<p>When you run SAC, you need libraries, so libx11-6 must be installed.</p>
+<p>When you want to build SAC from source codes, you need both libraries and headers, so you have to install libx11-dev.</p>
+<p>That’s also why the libx11-dev package has the -dev suffix, because you only need it when you’re developing something (i.e., compileing a package from source).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../filesys/" class="btn btn-neutral float-right" title="文件管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../ubuntu_setup/" class="btn btn-neutral float-left" title="Ubuntu 安装配置" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>波形绘制 &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="从数据中心申请地震数据" href="../plot_5_retrieving_data/" />
+    <link rel="prev" title="读写地震数据" href="../plot_3_read_and_write/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt4/">GMT4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../">ObsPy</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../#id1">学习资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../#id2">安装</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../#id3">主要内容</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../plot_2_utc_date_time/">世界标准时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_3_read_and_write/">读写地震数据</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">波形绘制</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">绘制单分量波形</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">绘制三分量波形</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">自定义绘图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dayplot">绘制 <code class="docutils literal notranslate"><span class="pre">dayplot</span></code> 图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#section">绘制 <code class="docutils literal notranslate"><span class="pre">section</span></code> 图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matplotlib">利用 <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> 自定义绘图</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_5_retrieving_data/">从数据中心申请地震数据</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../pygmtdoc/">PyGMT</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../">ObsPy</a> &raquo;</li>
+        
+      <li>波形绘制</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/obspydoc/plot_4_waveform_plotting.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">注解</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-obspydoc-plot-4-waveform-plotting-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="sphx-glr-obspydoc-plot-4-waveform-plotting-py">
+<span id="id1"></span><h1>波形绘制<a class="headerlink" href="#sphx-glr-obspydoc-plot-4-waveform-plotting-py" title="永久链接至标题">¶</a></h1>
+<p>本节主要介绍如何利用 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.stream.Stream.html#obspy.core.stream.Stream" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stream</span></code></a> 的
+<a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.stream.Stream.plot.html#obspy.core.stream.Stream.plot" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> 方法绘制地震波形。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">obspy</span> <span class="kn">import</span> <span class="n">read</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h2>绘制单分量波形<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>从服务器读取单分量波形数据：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singlechannel</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;https://examples.obspy.org/COP.BHZ.DK.2009.050&#39;</span><span class="p">)</span>
+
+<span class="c1"># 绘制单分量波形数据，默认大小为 800x250</span>
+<span class="c1"># 添加 outfile 参数后图片保存到本地</span>
+<span class="n">singlechannel</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">outfile</span><span class="o">=</span><span class="s1">&#39;singlechannel.pdf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>绘制三分量波形<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>分别读取三分量波形数据并叠加：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">threechannels</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;https://examples.obspy.org/COP.BHE.DK.2009.050&#39;</span><span class="p">)</span>
+<span class="n">threechannels</span> <span class="o">+=</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;https://examples.obspy.org/COP.BHN.DK.2009.050&#39;</span><span class="p">)</span>
+<span class="n">threechannels</span> <span class="o">+=</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;https://examples.obspy.org/COP.BHZ.DK.2009.050&#39;</span><span class="p">)</span>
+
+<span class="c1"># 脚本自动执行后不显示图片，引入 matplotlib 模块显示图像</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">threechannels</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>  <span class="c1"># 绘制多分量波形数据，大小为 800x400</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 4 waveform plotting" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_4_waveform_plotting_001.png" />
+</div>
+<div class="section" id="id4">
+<h2>自定义绘图<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>自定义绘图，更多选项参考 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.stream.Stream.plot.html#obspy.core.stream.Stream.plot" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> 方法：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">singlechannel</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">starttime</span>
+<span class="n">singlechannel</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">number_of_ticks</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                    <span class="n">tick_rotation</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">tick_format</span><span class="o">=</span><span class="s1">&#39;%I:%M %p&#39;</span><span class="p">,</span>
+                    <span class="n">starttime</span><span class="o">=</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">,</span> <span class="n">endtime</span><span class="o">=</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span> <span class="o">+</span> <span class="mi">120</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 4 waveform plotting" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_4_waveform_plotting_002.png" />
+</div>
+<div class="section" id="dayplot">
+<h2>绘制 <code class="docutils literal notranslate"><span class="pre">dayplot</span></code> 图<a class="headerlink" href="#dayplot" title="永久链接至标题">¶</a></h2>
+<p>绘制 <code class="docutils literal notranslate"><span class="pre">dayplot</span></code> 图，参数含义参考 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.stream.Stream.plot.html#obspy.core.stream.Stream.plot" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> 方法：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">singlechannel</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;dayplot&#39;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="DK.COP..BHZ" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_4_waveform_plotting_003.png" />
+<p>将地震信息添加到 <code class="docutils literal notranslate"><span class="pre">dayplot</span></code> 中：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s2">&quot;https://examples.obspy.org/GR.BFO..LHZ.2012.108&quot;</span><span class="p">)</span>
+<span class="n">st</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;lowpass&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">corners</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 低通滤波</span>
+<span class="n">st</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;dayplot&quot;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">right_vertical_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">vertical_scaling_range</span><span class="o">=</span><span class="mf">2e4</span><span class="p">,</span> <span class="n">one_tick_per_line</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 振幅缩放比例 2e4, Y 轴每个刻度都标上时间</span>
+            <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">],</span> <span class="n">show_y_UTC_label</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">events</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;min_magnitude&#39;</span><span class="p">:</span> <span class="mf">6.5</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>  <span class="c1"># 标上 6.5级 以上地震</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="GR.BFO..LHZ" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_4_waveform_plotting_004.png" />
+</div>
+<div class="section" id="section">
+<h2>绘制 <code class="docutils literal notranslate"><span class="pre">section</span></code> 图<a class="headerlink" href="#section" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.transforms</span> <span class="kn">import</span> <span class="n">blended_transform_factory</span>
+<span class="kn">from</span> <span class="nn">obspy</span> <span class="kn">import</span> <span class="n">read</span><span class="p">,</span> <span class="n">Stream</span>
+<span class="kn">from</span> <span class="nn">obspy.geodetics</span> <span class="kn">import</span> <span class="n">gps2dist_azimuth</span>
+
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;https://examples.obspy.org/&#39;</span>
+<span class="c1"># 文件格式： SAC</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TOK.2011.328.21.10.54.OKR01.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR02.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR03.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR04.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR05.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR06.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR07.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR08.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR09.HHN.inv&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;TOK.2011.328.21.10.54.OKR10.HHN.inv&#39;</span><span class="p">]</span>
+<span class="c1"># 震源</span>
+<span class="n">eq_lat</span> <span class="o">=</span> <span class="mf">35.565</span>
+<span class="n">eq_lon</span> <span class="o">=</span> <span class="o">-</span><span class="mf">96.792</span>
+
+<span class="c1"># 从服务器读取波形数据</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">waveform</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">st</span> <span class="o">+=</span> <span class="n">read</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">waveform</span><span class="p">)</span>
+
+<span class="c1"># 读取头段变量中的经纬度信息计算震中距，单位为 米</span>
+<span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">st</span><span class="p">:</span>
+    <span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">distance</span> <span class="o">=</span> <span class="n">gps2dist_azimuth</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">sac</span><span class="o">.</span><span class="n">stla</span><span class="p">,</span> <span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">sac</span><span class="o">.</span><span class="n">stlo</span><span class="p">,</span>
+                                         <span class="n">eq_lat</span><span class="p">,</span> <span class="n">eq_lon</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># 设置台网名用于图片标题</span>
+    <span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">network</span> <span class="o">=</span> <span class="s1">&#39;TOK&#39;</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;bandpass&#39;</span><span class="p">,</span> <span class="n">freqmin</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">freqmax</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">st</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;section&#39;</span><span class="p">,</span> <span class="n">plot_dx</span><span class="o">=</span><span class="mf">20e3</span><span class="p">,</span> <span class="n">recordlength</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="c1"># x 轴间距为 20km，y 轴长度为 100s</span>
+        <span class="n">time_down</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=.</span><span class="mi">25</span><span class="p">,</span> <span class="n">grid_linewidth</span><span class="o">=.</span><span class="mi">25</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>  <span class="c1"># 后面还要添加信息时，必须带上后两项</span>
+
+<span class="c1"># 添加台站名</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">blended_transform_factory</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="p">,</span> <span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">st</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">distance</span> <span class="o">/</span> <span class="mf">1e3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">station</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">,</span>
+            <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 4 waveform plotting" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_4_waveform_plotting_005.png" />
+</div>
+<div class="section" id="matplotlib">
+<h2>利用 <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> 自定义绘图<a class="headerlink" href="#matplotlib" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">obspy</span> <span class="kn">import</span> <span class="n">read</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">read</span><span class="p">()</span>
+<span class="n">tr</span> <span class="o">=</span> <span class="n">st</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">times</span><span class="p">(</span><span class="s2">&quot;matplotlib&quot;</span><span class="p">),</span> <span class="n">tr</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;b-&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis_date</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 4 waveform plotting" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_4_waveform_plotting_006.png" />
+<p>删除临时文件</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;singlechannel.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  16.700 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-obspydoc-plot-4-waveform-plotting-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/e43a194a01562c1df2325bce94e0906e/plot_4_waveform_plotting.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_4_waveform_plotting.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/c38d2361ceae12554d396c1f01a50ce1/plot_4_waveform_plotting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_4_waveform_plotting.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../plot_5_retrieving_data/" class="btn btn-neutral float-right" title="从数据中心申请地震数据" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../plot_3_read_and_write/" class="btn btn-neutral float-left" title="读写地震数据" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

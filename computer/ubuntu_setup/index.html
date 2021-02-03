@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Ubuntu 安装配置 &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="Linux 基础" href="../linux101/" />
+    <link rel="prev" title="WSL2 安装配置" href="../wsl_setup/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ubuntu 安装配置</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">更换软件源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pip">更换 pip 源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git">git</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt4/">GMT4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../obspydoc/">ObsPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pygmtdoc/">PyGMT</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Ubuntu 安装配置</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/computer/ubuntu_setup.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ubuntu">
+<h1>Ubuntu 安装配置<a class="headerlink" href="#ubuntu" title="永久链接至标题">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">推荐阅读</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://seismo-learn.org/seismology101/computer/ubuntu-setup/" title="(在 地震“学”科研入门教程)"><span>Ubuntu 配置指南</span></a></p>
+</dd>
+<dt class="field-even">更新日期</dt>
+<dd class="field-even"><p>2021-01-27</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>Ubuntu 的安装方式请参考《<a class="reference external" href="https://seismo-learn.org/seismology101/computer/ubuntu-setup/" title="(在 地震“学”科研入门教程)"><span>Ubuntu 配置指南</span></a>》。</p>
+</div>
+<div class="section" id="id2">
+<h2>更换软件源<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>将 Ubuntu 的软件源更换为国内镜像源以提高下载速度。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo vim /etc/apt/sources.list     <span class="c1"># 将 apt 更换为国内源</span>
+    :%s/security.ubuntu/mirrors.aliyun/g
+    :%s/archive.ubuntu/mirrors.aliyun/g
+    :wq
+$ sudo apt update     <span class="c1"># 更新</span>
+$ sudo apt upgrade
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dpkg</span></code> 是 Debian 的一个底层包管理工具，主要用于对已下载到本地和已安装的软件包进行管理。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ dpkg -i package-name.deb  <span class="c1"># 安装 deb 包</span>
+$ dpkg -r package-name.deb  <span class="c1"># 移除 deb 包，保留配置文件</span>
+$ dpkg -P package-name.deb  <span class="c1"># 清除 deb 包所有文件</span>
+$ dpkg -l name-pattern      <span class="c1"># 查看系统中的软件包</span>
+$ dpkg -L name-pattern      <span class="c1"># 查看安装文件及目录</span>
+$ dpkg -s                   <span class="c1"># 查看已安装软件包的信息</span>
+$ dpkg -l <span class="p">|</span> grep ssh
+$ dpkg -L openssh-client
+$ dpkg -s openssh-client
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dpkg</span></code> 解决了软件安装过程中的大量问题，<code class="docutils literal notranslate"><span class="pre">apt</span></code> 能解决软件安装过程中的依赖问题</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ apt update                <span class="c1"># 从软件源服务器获取最新的软件信息并缓存到本地</span>
+$ apt upgrade               <span class="c1"># 已安装的软件有新版本的话则进行升级</span>
+$ apt list                  <span class="c1"># 列出本地仓库中所有的软件包名</span>
+$ apt list --installed      <span class="c1"># 列出系统中所有已安装的包名</span>
+$ apt search                <span class="c1"># 搜索包</span>
+$ apt show                  <span class="c1"># 列出指定包的详细信息</span>
+$ apt install               <span class="c1"># 安装指定的包，并同时安装其依赖的其他包</span>
+$ apt remove                <span class="c1"># 卸载包，但不删除相关配置文件</span>
+$ apt autoremove            <span class="c1"># 卸载因安装软件自动安装的依赖，而现在又不需要的依赖包</span>
+$ apt purge                 <span class="c1"># 卸载包，同时删除相关配置文件</span>
+$ apt clean                 <span class="c1"># 删除所有已下载的软件包</span>
+$ apt autoclean             <span class="c1"># 类似 clean，但删除的是过期的包</span>
+$ apt list --installed <span class="p">|</span> grep x11
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>Linux 用户也可以访问 <a class="reference external" href="https://pkgs.org/">https://pkgs.org/</a> 网站查询软件包。该网站支持多种 Linux 发行版和多个官方及第三方软件仓库，且为每个软件包提供了丰富的元信息、依赖和被依赖关系、包含的文件、安装方式以及更新历史等信息。</p>
+</div>
+</div>
+<div class="section" id="pip">
+<h2>更换 pip 源<a class="headerlink" href="#pip" title="永久链接至标题">¶</a></h2>
+<p>Ubuntu 可能没有预安装 pip3，需要自行安装并更换镜像源。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt install python3-pip
+$ sudo ln -s /usr/bin/python3 /usr/bin/python   <span class="c1"># 更换 python 名</span>
+$ sudo ln -s /usr/bin/pip3 /usr/bin/pip   <span class="c1"># 更换 pip 名</span>
+$ mkdir ~/.pip
+$ <span class="nb">cd</span> ~/.pip
+$ sudo vim pip.conf   <span class="c1"># 更换 pip 国内源</span>
+    <span class="o">[</span>global<span class="o">]</span>
+    index-url <span class="o">=</span> https://pypi.tuna.tsinghua.edu.cn/simple
+    <span class="o">[</span>install<span class="o">]</span>
+    trusted-host <span class="o">=</span> https://pypi.tuna.tsinghua.edu.cn
+    :wq
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>更推荐在 Linux 中使用 <a class="reference internal" href="../../software/anaconda/"><span class="doc">Anaconda</span></a> 来安装使用 Python。</p>
+</div>
+</div>
+<div class="section" id="git">
+<h2>git<a class="headerlink" href="#git" title="永久链接至标题">¶</a></h2>
+<p>在 Ubuntu 上安装 git 进行代码开发协作。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在本机上配置个人信息</span>
+$ sudo apt install git
+$ git config --global user.name <span class="s2">&quot;zhaozhiyuan1989&quot;</span>
+$ git config --global user.email <span class="s2">&quot;shetu2008@163.com&quot;</span>
+$ ssh-keygen -t rsa -C <span class="s2">&quot;shetu2008@163.com&quot;</span>
+</pre></div>
+</div>
+<p>然后到 <a class="reference external" href="https://github.com/">GitHub</a>
+和 <a class="reference external" href="https://gitee.com/">Gitee</a> 上添加 <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>，Gitee 可以在 Github 连接缓慢的时候提供帮助，从 Gitee 上克隆下载后需要在 <code class="file docutils literal notranslate"><span class="pre">.git/config</span></code> 文件中修改为 Github 的地址。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../linux101/" class="btn btn-neutral float-right" title="Linux 基础" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../wsl_setup/" class="btn btn-neutral float-left" title="WSL2 安装配置" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

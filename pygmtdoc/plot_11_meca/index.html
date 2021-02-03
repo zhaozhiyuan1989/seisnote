@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>绘制沙滩球 &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="绘制等高线" href="../plot_12_contour/" />
+    <link rel="prev" title="添加图例" href="../plot_10_legend/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt4/">GMT4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../obspydoc/">ObsPy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">PyGMT</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../#id1">学习资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../#id2">安装</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../#id3">主要内容</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../plot_01_first_figure/">命令初探</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_02_region/">设置绘图区域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_03_basemap/">绘制底图边框</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_04_coastline/">绘制海岸线</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_05_plot/">绘制符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_06_plotline/">绘制线条</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_07_text/">添加文字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_08_datetime/">读取日期数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_09_colorbar/">添加 colorbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_10_legend/">添加图例</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">绘制沙滩球</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">利用字典传入数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">利用文本传入数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pygmt-gmt">PyGMT 访问 GMT 模块</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_12_contour/">绘制等高线</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_13_earth_relief/">绘制地形</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_14_grdview/">绘制 3D 曲面</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_15_plot3d/">绘制三维散点图</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_16_grdtrack/">对网格文件采样</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_17_image/">在地图上添加图片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_18_logo/">在地图上添加 logo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_19_config/">配置参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_20_projection/">投影方式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../">PyGMT</a> &raquo;</li>
+        
+      <li>绘制沙滩球</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/pygmtdoc/plot_11_meca.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">注解</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-pygmtdoc-plot-11-meca-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="sphx-glr-pygmtdoc-plot-11-meca-py">
+<span id="id1"></span><h1>绘制沙滩球<a class="headerlink" href="#sphx-glr-pygmtdoc-plot-11-meca-py" title="永久链接至标题">¶</a></h1>
+<p>利用 <a class="reference external" href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.meca.html#pygmt.Figure.meca" title="(在 PyGMT vv0.2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pygmt.Figure.meca()</span></code></a> 可以绘制沙滩球。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>可结合《<a class="reference external" href="https://docs.gmt-china.org/latest/module/meca/" title="(在 GMT中文手册 v6.1)"><span>meca</span></a> 模块》学习。</p>
+</div>
+<p>这里给出一个简单的示例，详细的说明请参考 <a class="reference external" href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.meca.html#pygmt.Figure.meca" title="(在 PyGMT vv0.2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pygmt.Figure.meca()</span></code></a> 方法。</p>
+<div class="section" id="id2">
+<h2>利用字典传入数据<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="o">-</span><span class="mi">122</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">49</span><span class="p">],</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M6c&quot;</span><span class="p">,</span>
+    <span class="n">land</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+    <span class="n">water</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span>
+    <span class="n">shorelines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 将震源机制解参数以字典形式存储</span>
+<span class="n">focal_mechanism</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">strike</span><span class="o">=</span><span class="mi">330</span><span class="p">,</span> <span class="n">dip</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">rake</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">magnitude</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=-</span><span class="mf">124.3</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="mf">48.1</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mf">12.0</span><span class="p">)</span>
+
+<span class="c1"># 传入震源机制解参数，用 scale 选项控制绘制大小</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span><span class="n">focal_mechanism</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;1c&quot;</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 11 meca" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_11_meca_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>利用文本传入数据<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
+    <span class="n">region</span><span class="o">=</span><span class="s2">&quot;102.5/105.5/30.5/32.5&quot;</span><span class="p">,</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;Q104/15c&quot;</span><span class="p">,</span>
+    <span class="n">land</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSen&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="c1"># 生成 CPT 文件，为每个深度设置不同的颜色</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;meca.cpt&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot; 0   0-1-1   20   0-1-1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;20  60-1-1   40  60-1-1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;40 120-1-1   60 120-1-1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;60 240-1-1  100 240-1-1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># 构建输入文本</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;examples.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;104.3300  31.90    39.8  32.00 64.00   85.00  7.0 0        0        A</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;104       31.52    27.1  22.00 53.00   57.00  6.0 0        0        B</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;103.6700  31.1300   6.4  86.00 32.00  -65.00  8.0 0        0        C</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;103.900   31.3400  43.6 194.00 84.00  179.00  4.9 104.180  30.8400  D</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;103.7200  31.4400  67.3  73.00 84.00 -162.00  4.9 103.120  31.6400  E</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;104.1200  31.7800  12.7 186.00 68.00  107.00  4.7 103.830  32.2600  F</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;104.2300  31.6100  62.0  86.00 63.00  -51.00  4.7 104.960  31.6900  G</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 输入文件时需要 convention 指定震源机制解的格式，可以添加 offset 偏移震源球位置</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span><span class="s2">&quot;examples.txt&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;1c&quot;</span><span class="p">,</span> <span class="n">convention</span><span class="o">=</span><span class="s2">&quot;aki&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="s2">&quot;0.1p,red,.+s0.2c&quot;</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="s2">&quot;meca.cpt&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 11 meca" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_11_meca_002.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="pygmt-gmt">
+<h2>PyGMT 访问 GMT 模块<a class="headerlink" href="#pygmt-gmt" title="永久链接至标题">¶</a></h2>
+<p>PyGMT 提供了 <a class="reference external" href="https://www.pygmt.org/latest/api/generated/pygmt.clib.Session.html#pygmt.clib.Session" title="(在 PyGMT vv0.2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pygmt.clib.Session</span></code></a> 可以直接调用 GMT 模块。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
+    <span class="n">region</span><span class="o">=</span><span class="s2">&quot;102.5/105.5/30.5/32.5&quot;</span><span class="p">,</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;Q104/15c&quot;</span><span class="p">,</span>
+    <span class="n">land</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSen&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="k">with</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">clib</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">call_module</span><span class="p">(</span><span class="s1">&#39;meca&#39;</span><span class="p">,</span><span class="s1">&#39;examples.txt -CP5p -Sa1.3c -Zmeca.cpt&#39;</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">call_module</span><span class="p">(</span><span class="s1">&#39;colorbar&#39;</span><span class="p">,</span><span class="s1">&#39;-Cmeca.cpt -DjBL+w5c/0.5c+ml+o0.8c/0.4c -Bx+lDepth -By+lkm -S&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 11 meca" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_11_meca_003.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+<p>清除临时文件</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;examples.txt&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;meca.cpt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.720 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-pygmtdoc-plot-11-meca-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/783ef51acdde45278428dd608aa96da0/plot_11_meca.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_11_meca.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/c6e0d946f84cd9db19432d673668d588/plot_11_meca.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_11_meca.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../plot_12_contour/" class="btn btn-neutral float-right" title="绘制等高线" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../plot_10_legend/" class="btn btn-neutral float-left" title="添加图例" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>GMT4 &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.js"></script>
+        <script src="../../_static/sphinx_tabs/tabs.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="GMT6" href="../gmt6/" />
+    <link rel="prev" title="FOCMEC" href="../focmec/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../focmec/">FOCMEC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GMT4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">用法指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">常见问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">附录</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../obspydoc/">ObsPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pygmtdoc/">PyGMT</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>GMT4</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/software/gmt4.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gmt4">
+<h1>GMT4<a class="headerlink" href="#gmt4" title="永久链接至标题">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">软件来源</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://mirrors.ustc.edu.cn">http://mirrors.ustc.edu.cn</a></p>
+</dd>
+<dt class="field-even">适用平台</dt>
+<dd class="field-even"><p>Linux、macOS、Windows</p>
+</dd>
+<dt class="field-odd">推荐阅读</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.soest.hawaii.edu/gmt/gmt/html/">GMT4 官方文档</a></p>
+</dd>
+<dt class="field-even">更新日期</dt>
+<dd class="field-even"><p>2021-01-27</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>目前 GMT4 和 GMT5 都已经停止维护，建议直接学习 <a class="reference internal" href="../gmt6/"><span class="doc">GMT6</span></a>。</p>
+</div>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>2018 年官方推出 GMT4.5.18 后不再对 GMT4 进行维护。</p>
+<p>由于很多老的脚本都是用 GMT4 的语法写的，全部修改成新的语法很麻烦而且没有必要，最好的办法就是同时安装 GMT4 和 GMT 的最新版本。</p>
+<p>下面简要介绍 GMT4 的安装。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>如果已经安装了 <a class="reference internal" href="../anaconda/"><span class="doc">Anaconda</span></a> ，安装 GMT 过程中可能会出现找不到依赖库的情况，把 <a class="reference internal" href="../anaconda/"><span class="doc">Anaconda</span></a> 环境变量注释后再安装 GMT，完成后再取消注释即可。</p>
+</div>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-0-0 docutils container">
+<div class="docutils container">
+<p>Ubuntu</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-0-1 docutils container">
+<div class="docutils container">
+<p>Centos7</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-0-2 docutils container">
+<div class="docutils container">
+<p>Windows</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0-0 active docutils container">
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># 安装编译所需软件包</span>
+ $ sudo apt update
+ $ sudo apt install ghostscript
+ $ sudo apt install gcc g++ make libc6    <span class="c1"># 开发工具</span>
+ $ sudo apt install libnetcdf-dev libxaw7-dev
+ <span class="c1"># 下载软件包</span>
+ $ wget http://mirrors.ustc.edu.cn/gmt/gmt-4.5.18-src.tar.bz2
+ $ wget http://mirrors.ustc.edu.cn/gmt/gshhg-gmt-2.3.7.tar.gz
+ <span class="c1"># 解压</span>
+ $ tar -xvf gmt-4.5.18-src.tar.bz2
+ <span class="c1"># 编译安装 GMT4</span>
+ $ <span class="nb">cd</span> gmt-4.5.18
+ $ ./configure --prefix<span class="o">=</span>/home/zhao/opt/GMT4  <span class="c1"># 指定 gmt 安装路径</span>
+ $ make
+ $ sudo make install-all
+ $ <span class="nb">cd</span> ../
+ <span class="c1"># 解压海岸线数据</span>
+ $ tar -xvf gshhg-gmt-2.3.7.tar.gz
+ <span class="c1"># 移动到 GMT4 安装目录</span>
+ $ sudo mv gshhg-gmt-2.3.7 ~/opt/GMT4/share/coast
+ <span class="c1"># 修改环境变量</span>
+ $ <span class="nb">echo</span> <span class="s1">&#39;export GMT4HOME=/home/zhao/opt/GMT4&#39;</span> &gt;&gt; ~/.bashrc
+ $ <span class="nb">echo</span> <span class="s1">&#39;export PATH=${GMT4HOME}/bin:$PATH&#39;</span>&gt;&gt; ~/.bashrc
+ $ <span class="nb">echo</span> <span class="s1">&#39;export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${GMT4HOME}/lib64&#39;</span>&gt;&gt; ~/.bashrc
+ $ <span class="nb">exec</span> <span class="nv">$SHELL</span> -l
+ $ psxy -   <span class="c1"># 测试</span>
+ <span class="c1"># GMT4 配置中文</span>
+ $ sudo vim /opt/GMT4/share/pslib/PS_font_info.d
+     <span class="c1"># 在文末添加字体</span>
+     STSong-Light--UniGB-UTF8-H  <span class="m">0</span>.700    <span class="m">1</span>
+     STFangsong-Light--UniGB-UTF8-H  <span class="m">0</span>.700    <span class="m">1</span>
+     STHeiti-Regular--UniGB-UTF8-H   <span class="m">0</span>.700   <span class="m">1</span>
+     STKaiti-Regular--UniGB-UTF8-H   <span class="m">0</span>.700   <span class="m">1</span>
+ $ pstext -L  <span class="c1"># 查看 gmt 当前支持字体</span>
+ <span class="c1"># ghostscript 配置中文</span>
+ $ sudo apt install poppler-data
+ $ sudo apt install fonts-arphic-uming fonts-arphic-ukai  <span class="c1"># 安装 gs 默认 Linux 字体</span>
+ <span class="c1"># 新建 winfonts 文件夹</span>
+ $ sudo mkdir /usr/share/fonts/winfonts/
+ <span class="c1"># 将 Windows 下的中文字体拷贝过来</span>
+ $ sudo cp /mnt/c/windows/fonts/<span class="o">{</span>simhei.ttf,simkai.ttf,simsun.ttc,simfang.ttf<span class="o">}</span> /usr/share/fonts/winfonts
+ <span class="c1"># 修改 gs 中文配置文件</span>
+ $ sudo vim /etc/ghostscript/cidfmap.d/90gs-cjk-resource-gb1.conf
+     % 原配置文件的内容，与 STSong-Light 等相关的四行必须删除
+     /BousungEG-Light-GB &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/truetype/arphic/uming.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /GBZenKai-Medium    &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/truetype/arphic/ukai.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /Song-Medium /GBZenKai-Medium <span class="p">;</span>
+     /Adobe-GB1      /BousungEG-Light-GB <span class="p">;</span>
+     /Adobe-GB1-Bold /GBZenKai-Medium <span class="p">;</span>
+     % 新增 Windows 字体的支持
+     /STSong-Light &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simsun.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STFangsong-Light &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simfang.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STHeiti-Regular &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simhei.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STKaiti-Regular &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simkai.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+ $ sudo update-gsfontmap
+ <span class="c1"># 中文测试</span>
+ $ vim gmt4.5.18-cn-test.sh
+     <span class="c1">#!/bin/bash</span>
+     gmtset HEADER_FONT <span class="m">35</span>
+     pstext -R0/10/0/3 -JX15c/3c -B1/1:.<span class="s2">&quot;GMT中文支持&quot;</span>: -P &gt; cn.ps <span class="s">&lt;&lt;EOF</span>
+<span class="s">     1.5 2 30 0 35 LM GMT宋体</span>
+<span class="s">     1.5 1 30 0 36 LM GMT仿宋</span>
+<span class="s">     5.5 2 30 0 37 LM GMT黑体</span>
+<span class="s">     5.5 1 30 0 38 LM GMT楷体</span>
+<span class="s">     EOF</span>
+     ps2raster cn.ps -A -P -Tg
+     rm .gmt* cn.ps
+     EOF
+ $ bash gmt4.5.18-cn-test.sh  <span class="c1"># 执行脚本</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0-1 docutils container">
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="c1"># 安装编译所需软件包</span>
+ $ sudo yum install gcc gcc-c++ make glibc  <span class="c1"># 开发工具</span>
+ $ sudo yum install netcdf netcdf-devel gdal gdal-devel gdal-python  <span class="c1"># netCDF 库</span>
+ $ sudo yum install libXaw-devel  <span class="c1"># X 相关库</span>
+ $ sudo yum install libICE-devel libSM-devel libX11-devel
+ $ sudo yum install libXext-devel libXmu-devel libXt-devel
+ <span class="c1"># 下载软件包</span>
+ $ wget http://mirrors.ustc.edu.cn/gmt/gmt-4.5.18-src.tar.bz2
+ $ wget http://mirrors.ustc.edu.cn/gmt/gshhg-gmt-2.3.7.tar.gz
+ <span class="c1"># 解压</span>
+ $ tar -xvf gmt-4.5.18-src.tar.bz2
+ <span class="c1"># 编译安装 GMT4</span>
+ $ <span class="nb">cd</span> gmt-4.5.18
+ $ ./configure --prefix<span class="o">=</span>/home/zhao/opt/GMT4  <span class="c1"># 指定 gmt 安装路径</span>
+ $ make
+ $ sudo make install-all
+ $ <span class="nb">cd</span> ../
+ <span class="c1"># 解压海岸线数据</span>
+ $ tar -xvf gshhg-gmt-2.3.7.tar.gz
+ <span class="c1"># 移动到 GMT4 安装目录</span>
+ $ sudo mv gshhg-gmt-2.3.7 ~/opt/GMT4/share/coast
+ <span class="c1"># 修改环境变量</span>
+ $ <span class="nb">echo</span> <span class="s1">&#39;export GMT4HOME=/home/zhao/opt/GMT4&#39;</span> &gt;&gt; ~/.bashrc
+ $ <span class="nb">echo</span> <span class="s1">&#39;export PATH=${GMT4HOME}/bin:$PATH&#39;</span>&gt;&gt; ~/.bashrc
+ $ <span class="nb">echo</span> <span class="s1">&#39;export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${GMT4HOME}/lib64&#39;</span>&gt;&gt; ~/.bashrc
+ $ <span class="nb">exec</span> <span class="nv">$SHELL</span> -l
+ $ psxy -   <span class="c1"># 测试</span>
+ <span class="c1"># GMT4 配置中文</span>
+ $ sudo vim /opt/GMT4/share/pslib/PS_font_info.d
+     <span class="c1"># 在文末添加字体</span>
+     STSong-Light--UniGB-UTF8-H  <span class="m">0</span>.700    <span class="m">1</span>
+     STFangsong-Light--UniGB-UTF8-H  <span class="m">0</span>.700    <span class="m">1</span>
+     STHeiti-Regular--UniGB-UTF8-H   <span class="m">0</span>.700   <span class="m">1</span>
+     STKaiti-Regular--UniGB-UTF8-H   <span class="m">0</span>.700   <span class="m">1</span>
+ $ pstext -L  <span class="c1"># 查看 gmt 当前支持字体</span>
+ <span class="c1"># ghostscript 配置中文</span>
+ $ ssudo yum install ghostscript-chinese-zh_CN  <span class="c1"># 安装 gs 简体中文配置文件</span>
+ <span class="c1"># 新建 winfonts 文件夹</span>
+ $ sudo mkdir /usr/share/fonts/winfonts/
+ <span class="c1"># 将 Windows 下的中文字体拷贝过来</span>
+ $ sudo cp /mnt/c/windows/fonts/<span class="o">{</span>simhei.ttf,simkai.ttf,simsun.ttc,simfang.ttf<span class="o">}</span> /usr/share/fonts/winfonts
+ <span class="c1"># 修改 gs 中文配置文件</span>
+ $ sudo vim /usr/share/ghostscript/conf.d/cidfmap.zh_CN
+     % 原配置文件的内容，与 STSong-Light 等相关的四行必须删除
+     /BousungEG-Light-GB &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/truetype/arphic/uming.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /GBZenKai-Medium    &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/truetype/arphic/ukai.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /Song-Medium /GBZenKai-Medium <span class="p">;</span>
+     /Adobe-GB1      /BousungEG-Light-GB <span class="p">;</span>
+     /Adobe-GB1-Bold /GBZenKai-Medium <span class="p">;</span>
+     % 新增 Windows 字体的支持
+     /STSong-Light &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simsun.ttc<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STFangsong-Light &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simfang.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STHeiti-Regular &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simhei.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+     /STKaiti-Regular &lt;&lt;/FileType /TrueType /Path <span class="o">(</span>/usr/share/fonts/winfonts/simkai.ttf<span class="o">)</span> /SubfontId <span class="m">0</span> /CSI <span class="o">[(</span>GB1<span class="o">)</span> <span class="m">4</span><span class="o">]</span> &gt;&gt; <span class="p">;</span>
+ <span class="c1"># 中文测试</span>
+ $ vim gmt4.5.18-cn-test.sh
+     <span class="c1">#!/bin/bash</span>
+     gmtset HEADER_FONT <span class="m">35</span>
+     pstext -R0/10/0/3 -JX15c/3c -B1/1:.<span class="s2">&quot;GMT中文支持&quot;</span>: -P &gt; cn.ps <span class="s">&lt;&lt;EOF</span>
+<span class="s">     1.5 2 30 0 35 LM GMT宋体</span>
+<span class="s">     1.5 1 30 0 36 LM GMT仿宋</span>
+<span class="s">     5.5 2 30 0 37 LM GMT黑体</span>
+<span class="s">     5.5 1 30 0 38 LM GMT楷体</span>
+<span class="s">     EOF</span>
+     ps2raster cn.ps -A -P -Tg
+     rm .gmt* cn.ps
+     EOF
+ $ bash gmt4.5.18-cn-test.sh  <span class="c1"># 执行脚本</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-0-2 docutils container">
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span> 1.  安装 GMT4
+     - http://mirrors.ustc.edu.cn/gmt/bin/gmt-4.5.18-win64.exe
+     - http://mirrors.ustc.edu.cn/gmt/bin/gmt-4.5.18-pdf-win32.exe
+     - http://mirrors.ustc.edu.cn/gmt/bin/gshhg-2.3.7-win32.exe
+     依次安装，完成后在 C:\programs\gmt4\share\pslib\ 中加入如下语句:
+         STSong-Light--GB-EUC-H  0.700    1
+         STFangsong-Light--GB-EUC-H  0.700    1
+         STHeiti-Regular--GB-EUC-H   0.700   1
+         STKaiti-Regular--GB-EUC-H   0.700   1
+ 2.  安装 Ghostscript
+     - https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs950/gs950w64.exe
+     安装过程中必须勾选 Generate cidfmap for Windows CJK TrueType fonts 。
+     安装完成后必须添加环境变量：新建变量 GS_FONTPATH 并设置其值为 C:\Windows\fonts
+ 3.  安装 UnixTools
+
+     - https://gmt-china.org/data/UnixTools.zip
+     直接下载并解压到 GMT 的 bin 目录。
+ 4.  安装 Sumatra PDF 查看 PS 格式文件
+     - https://www.sumatrapdfreader.org/free-pdf-reader.html
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>用法指南<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>GMT4 绘图脚本非常简单，无非就是以下三步：<strong>配置参数</strong>、<strong>设置变量</strong>、<strong>模块绘图</strong>。</p>
+<p><strong>配置参数</strong>时可以利用 <code class="docutils literal notranslate"><span class="pre">gmtdefaults</span></code> 模块来快速查询参数具体名称和参数值的格式。</p>
+<p><strong>设置变量</strong>是为了简化脚本，在不同平台设置变量的语法不同，可根据实际情况自行搜索。</p>
+<p><strong>模块绘图</strong>需要你了解所有 GMT 常用模块的基本用途，这样你才能知道绘图时都需要用到哪些模块，我们不需要把所有模块的语法全部背会，用到的时候去查模块的用法就可以了。模块绘图的顺序就跟画画是一样的，从最底层画起，一层盖一层，最终完成绘制。</p>
+<p>绘图时脚本中所有的单位都应该显式表达，比如 <code class="docutils literal notranslate"><span class="pre">JX6c/-3c</span></code> 最好不要写成 <code class="docutils literal notranslate"><span class="pre">JX6/-3</span></code>，因为不同电脑中默认单位可能会不一致。</p>
+<p>最容易出错的地方就是模块绘图时 <code class="docutils literal notranslate"><span class="pre">-K</span></code> <code class="docutils literal notranslate"><span class="pre">-O</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> 的使用，请给予足够重视。</p>
+<p>掌握了脚本的写作思路后，剩下的就是根据实际需要去查询模块用法了。需要了解的是，在每个模块之后都有一些如 <code class="docutils literal notranslate"><span class="pre">-R</span></code> <code class="docutils literal notranslate"><span class="pre">-W</span></code> 之类的选项，在所有模块中含义用法都相同的选项叫做<strong>标准选项</strong>，而<strong>非标准选项</strong>在不同模块中的用法含义完全不同；在使用某个模块时必须要用的选项叫做<strong>必选选项</strong>，可用可不用的选项叫做这个模块的<strong>可选选项</strong>。</p>
+</div>
+<div class="section" id="id3">
+<h2>常见问题<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p><strong>make</strong> 时报错： <code class="docutils literal notranslate"><span class="pre">xgrid_Panner.c:4:10:</span> <span class="pre">fatal</span> <span class="pre">error:</span> <span class="pre">X11/Xaw/Scrollbar.h:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>登录 <a class="reference external" href="https://pkgs.org/">https://pkgs.org/</a> ，在网页右上角搜索 <strong>Scrollbar.h</strong> ，然后在 <strong>Search</strong> 一栏选择 <strong>Files</strong>，根据筛选条件对 <strong>Filter</strong> 进行修改，找到所需的包后点击查看，例如在 Ubuntu 下 <strong>Package name</strong> 为 <strong>libxaw7-dev</strong>，直接 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">libxaw7-dev</span></code> 即可解决。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h2>附录<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">gmtdefaults</span></code> 模块用来列出 GMT 所有参数的系统默认值或当前值：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gmtdefautls -D   <span class="c1"># 列出所有参数的系统默认值</span>
+$ gmtdefautls -L   <span class="c1"># 列出所有参数的当前值</span>
+</pre></div>
+</div>
+<p>它的主要用处是快速查询某个参数的准确名称或参数值的格式：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gmtdefaults -L <span class="p">|</span> grep PLOT
+    <span class="nv">PLOT_CLOCK_FORMAT</span>       <span class="o">=</span> hh:mm:ss
+    <span class="nv">PLOT_DATE_FORMAT</span>        <span class="o">=</span> yyyy-mm-dd
+    <span class="nv">PLOT_DEGREE_FORMAT</span>      <span class="o">=</span> ddd:mm:ss
+</pre></div>
+</div>
+<p>下面列出 GMT4 所有参数的简介，详细用法请参考该模块的 <a class="reference external" href="http://www.soest.hawaii.edu/gmt/gmt/html/man/gmtdefaults.html">官方文档</a> ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gmtdefaults -L
+<span class="c1">#</span>
+<span class="c1">#-------- Plot Media Parameters -------------</span>
+<span class="nv">PAGE_COLOR</span>          <span class="o">=</span> white     <span class="c1"># 纸张背景色</span>
+<span class="nv">PAGE_ORIENTATION</span>    <span class="o">=</span> landscape  <span class="c1"># 纸张方向为水平，垂直用portrait</span>
+<span class="nv">PAPER_MEDIA</span>         <span class="o">=</span> a4    <span class="c1"># 纸张大小</span>
+<span class="c1">#-------- Basemap Annotation Parameters ------</span>
+<span class="nv">ANNOT_MIN_ANGLE</span>             <span class="o">=</span> <span class="m">20</span> <span class="c1"># 倾斜投影最小标注角</span>
+<span class="nv">ANNOT_MIN_SPACING</span>   <span class="o">=</span> <span class="m">0</span>  <span class="c1"># 相邻标注间最小距离</span>
+<span class="nv">ANNOT_FONT_PRIMARY</span>  <span class="o">=</span> Helvetica  <span class="c1"># 主轴标注字体</span>
+<span class="nv">ANNOT_FONT_SIZE_PRIMARY</span>     <span class="o">=</span> 14p  <span class="c1"># 主轴标注字体大小</span>
+<span class="nv">ANNOT_OFFSET_PRIMARY</span>        <span class="o">=</span> <span class="m">0</span>.2c  <span class="c1"># 主轴标注与主轴之间的距离</span>
+<span class="nv">ANNOT_FONT_SECONDARY</span>        <span class="o">=</span> Helvetica  <span class="c1"># 次轴标注字体</span>
+<span class="nv">ANNOT_FONT_SIZE_SECONDARY</span>   <span class="o">=</span> 16p  <span class="c1"># 次轴标注字体大小</span>
+<span class="nv">ANNOT_OFFSET_SECONDARY</span>      <span class="o">=</span> <span class="m">0</span>.2c  <span class="c1"># 次轴标注与次轴之间的距离</span>
+<span class="nv">DEGREE_SYMBOL</span>               <span class="o">=</span> ring  <span class="c1"># 度符号</span>
+<span class="nv">HEADER_FONT</span>         <span class="o">=</span> Helvetica  <span class="c1"># 标题字体</span>
+<span class="nv">HEADER_FONT_SIZE</span>    <span class="o">=</span> 36p    <span class="c1"># 标题字体大小</span>
+<span class="nv">HEADER_OFFSET</span>               <span class="o">=</span> <span class="m">0</span>.5c   <span class="c1"># 标题与上边界的距离</span>
+<span class="nv">LABEL_FONT</span>          <span class="o">=</span> Helvetica  <span class="c1"># 轴标签字体</span>
+<span class="nv">LABEL_FONT_SIZE</span>             <span class="o">=</span> 24p    <span class="c1"># 轴标签字体大小</span>
+<span class="nv">LABEL_OFFSET</span>                <span class="o">=</span> <span class="m">0</span>.3c   <span class="c1"># 轴标注底部与轴标签顶部之间的距离</span>
+<span class="nv">OBLIQUE_ANNOTATION</span>  <span class="o">=</span> <span class="m">1</span>    <span class="c1"># 倾斜投影的标注方式</span>
+<span class="nv">PLOT_CLOCK_FORMAT</span>   <span class="o">=</span> hh:mm:ss  <span class="c1"># 绘图时间标注格式</span>
+<span class="nv">PLOT_DATE_FORMAT</span>    <span class="o">=</span> yyyy-mm-dd  <span class="c1"># 绘图日期标注格式</span>
+<span class="nv">PLOT_DEGREE_FORMAT</span>  <span class="o">=</span> ddd:mm:ss  <span class="c1"># 绘图经纬度标注格式，常用 ddd.xF</span>
+<span class="nv">Y_AXIS_TYPE</span>         <span class="o">=</span> hor_text  <span class="c1"># Y轴标注水平或垂直 ver_text</span>
+<span class="c1">#-------- Basemap Layout Parameters ---------</span>
+<span class="nv">BASEMAP_AXES</span>                <span class="o">=</span> WESN   <span class="c1"># 控制显示标注的边框，常用 WesN</span>
+<span class="nv">BASEMAP_FRAME_RGB</span>   <span class="o">=</span> black  <span class="c1"># 底图边框的颜色</span>
+<span class="nv">BASEMAP_TYPE</span>                <span class="o">=</span> fancy  <span class="c1"># 底图类型。inside：标注和刻度朝内。graph：线性投影，轴有箭头。fancy：火车轨道。plain：线。</span>
+<span class="nv">FRAME_PEN</span>           <span class="o">=</span> <span class="m">1</span>.25p  <span class="c1"># plain 边框宽度</span>
+<span class="nv">FRAME_WIDTH</span>         <span class="o">=</span> <span class="m">0</span>.2c   <span class="c1"># fancy 边框宽度</span>
+<span class="nv">GRID_CROSS_SIZE_PRIMARY</span>     <span class="o">=</span> 0c  <span class="c1"># 一级网格线的交叉线大小，0表示连续</span>
+<span class="nv">GRID_PEN_PRIMARY</span>    <span class="o">=</span> <span class="m">0</span>.25p <span class="c1"># 一级网格线的线条属性</span>
+<span class="nv">GRID_CROSS_SIZE_SECONDARY</span>   <span class="o">=</span> 0c <span class="c1"># 二级网格线的交叉线大小，0表示连续</span>
+<span class="nv">GRID_PEN_SECONDARY</span>  <span class="o">=</span> <span class="m">0</span>.5p  <span class="c1"># 二级网格线的线条属性</span>
+<span class="nv">MAP_SCALE_HEIGHT</span>    <span class="o">=</span> <span class="m">0</span>.2c  <span class="c1"># 地图比例尺高度</span>
+<span class="nv">POLAR_CAP</span>           <span class="o">=</span> <span class="m">85</span>/90  <span class="c1"># 控制两极地区网格线</span>
+<span class="nv">TICK_LENGTH</span>         <span class="o">=</span> <span class="m">0</span>.2c  <span class="c1"># 刻度线的长度，负值代表向内，-JX6i/-3i表示Y轴反向</span>
+<span class="nv">TICK_PEN</span>            <span class="o">=</span> <span class="m">0</span>.5p  <span class="c1"># 刻度线的属性</span>
+<span class="nv">X_AXIS_LENGTH</span>               <span class="o">=</span> 25c  <span class="c1"># 设置x轴默认长度</span>
+<span class="nv">Y_AXIS_LENGTH</span>               <span class="o">=</span> 15c  <span class="c1"># 设置y轴默认长度</span>
+<span class="nv">X_ORIGIN</span>            <span class="o">=</span> <span class="m">2</span>.5c  <span class="c1"># 新图在纸张上的原点坐标</span>
+<span class="nv">Y_ORIGIN</span>            <span class="o">=</span> <span class="m">2</span>.5c  <span class="c1"># 新图在纸张上的原点坐标</span>
+<span class="nv">UNIX_TIME</span>           <span class="o">=</span> FALSE  <span class="c1"># 是否显示时间戳，可用-U控制</span>
+<span class="nv">UNIX_TIME_POS</span>               <span class="o">=</span> BL/-2c/-2c <span class="c1"># 时间戳位置</span>
+<span class="nv">UNIX_TIME_FORMAT</span>    <span class="o">=</span> %Y %b %d %H:%M:%S  <span class="c1"># 时间戳格式</span>
+<span class="c1">#-------- Color System Parameters -----------</span>
+<span class="nv">COLOR_BACKGROUND</span>    <span class="o">=</span> black   <span class="c1"># 图片背景色，Z值小于cpt文件中最小值时的颜色</span>
+<span class="nv">COLOR_FOREGROUND</span>    <span class="o">=</span> white  <span class="c1"># 图片前景色，Z值大于cpt文件中最大值时的颜色</span>
+<span class="nv">COLOR_NAN</span>           <span class="o">=</span> <span class="m">128</span>   <span class="c1"># Z值为NAN时的颜色</span>
+<span class="nv">COLOR_IMAGE</span>         <span class="o">=</span> adobe   <span class="c1"># 控制PS的渲染方式</span>
+<span class="nv">COLOR_MODEL</span>         <span class="o">=</span> rgb   <span class="c1"># 对cpt文件插值时使用的颜色模型</span>
+<span class="nv">HSV_MIN_SATURATION</span>  <span class="o">=</span> <span class="m">1</span>   <span class="c1"># 模拟光照时最小负强度对应的饱和度S值</span>
+<span class="nv">HSV_MAX_SATURATION</span>  <span class="o">=</span> <span class="m">0</span>.1 <span class="c1"># 模拟光照时最大正强度对应的饱和度S值</span>
+<span class="nv">HSV_MIN_VALUE</span>               <span class="o">=</span> <span class="m">0</span>.3 <span class="c1"># 模拟光照时最小负强度对应的明度V值</span>
+<span class="nv">HSV_MAX_VALUE</span>               <span class="o">=</span> <span class="m">1</span>   <span class="c1"># 模拟光照时最大正强度对应的明度V值</span>
+<span class="c1">#-------- PostScript Parameters -------------</span>
+<span class="nv">CHAR_ENCODING</span>               <span class="o">=</span> ISOLatin1+  <span class="c1"># 字符编码</span>
+<span class="nv">DOTS_PR_INCH</span>                <span class="o">=</span> <span class="m">300</span>  <span class="c1"># 绘图精度，每英寸像素数</span>
+<span class="nv">GLOBAL_X_SCALE</span>              <span class="o">=</span> <span class="m">1</span>   <span class="c1"># 整体缩放时x方向的比例</span>
+<span class="nv">GLOBAL_Y_SCALE</span>              <span class="o">=</span> <span class="m">1</span>   <span class="c1"># 整体缩放时y方向的比例</span>
+<span class="nv">N_COPIES</span>            <span class="o">=</span> <span class="m">1</span>   <span class="c1"># 每张图的绘图数量</span>
+<span class="nv">PS_COLOR</span>            <span class="o">=</span> rgb  <span class="c1"># 设置生成PS代码时使用的颜色模型</span>
+<span class="nv">PS_IMAGE_COMPRESS</span>   <span class="o">=</span> lzw  <span class="c1"># 设置PS中图像压缩算法</span>
+<span class="nv">PS_IMAGE_FORMAT</span>             <span class="o">=</span> ascii  <span class="c1"># 生成PS图像格式</span>
+<span class="nv">PS_LINE_CAP</span>         <span class="o">=</span> butt <span class="c1"># 控制线段端点绘制方式。butt：不对端点做处理。round：端点处为直径与线宽相等的半圆弧。square：端点处为边长与线宽相等的半个正方形。</span>
+<span class="nv">PS_LINE_JOIN</span>                <span class="o">=</span> miter <span class="c1"># 控制线段拐点的绘制方式。</span>
+<span class="nv">PS_MITER_LIMIT</span>              <span class="o">=</span> <span class="m">35</span>  <span class="c1"># 设置 miter 拐角的角度阈值</span>
+<span class="nv">PS_VERBOSE</span>          <span class="o">=</span> FALSE <span class="c1"># 是否在PS文件中写详细注释</span>
+<span class="nv">TRANSPARENCY</span>                <span class="o">=</span> <span class="m">0</span>  <span class="c1"># 设置透明度</span>
+<span class="c1">#-------- I/O Format Parameters -------------</span>
+<span class="nv">D_FORMAT</span>            <span class="o">=</span> %.12lg  <span class="c1"># 双精度浮点数的输出格式</span>
+<span class="nv">FIELD_DELIMITER</span>             <span class="o">=</span> tab   <span class="c1"># GMT输出每列的分隔符</span>
+<span class="nv">GRIDFILE_FORMAT</span>             <span class="o">=</span> nf   <span class="c1"># 默认网格文件格式</span>
+<span class="nv">GRIDFILE_SHORTHAND</span>  <span class="o">=</span> FALSE  <span class="c1"># 是否检查网格文件后缀名</span>
+<span class="nv">INPUT_CLOCK_FORMAT</span>  <span class="o">=</span> hh:mm:ss  <span class="c1"># 输入文件的时间格式</span>
+<span class="nv">INPUT_DATE_FORMAT</span>   <span class="o">=</span> yyyy-mm-dd  <span class="c1"># 输入文件的日期格式</span>
+<span class="nv">IO_HEADER</span>           <span class="o">=</span> FALSE  <span class="c1"># 输入输出文件是否有头段</span>
+<span class="nv">N_HEADER_RECS</span>               <span class="o">=</span> <span class="m">1</span>  <span class="c1"># 如果有头端默认为1个</span>
+<span class="nv">NAN_RECORDS</span>         <span class="o">=</span> pass  <span class="c1"># 遇到NAN值跳过</span>
+<span class="nv">OUTPUT_CLOCK_FORMAT</span> <span class="o">=</span> hh:mm:ss  <span class="c1"># 输出文件的时间格式</span>
+<span class="nv">OUTPUT_DATE_FORMAT</span>  <span class="o">=</span> yyyy-mm-dd  <span class="c1"># 输出文件的日期格式</span>
+<span class="nv">OUTPUT_DEGREE_FORMAT</span>        <span class="o">=</span> D  <span class="c1"># 控制地理坐标数据的输出格式</span>
+<span class="nv">XY_TOGGLE</span>           <span class="o">=</span> FALSE  <span class="c1"># 经纬度互换</span>
+<span class="c1">#-------- Projection Parameters -------------</span>
+<span class="nv">ELLIPSOID</span>           <span class="o">=</span> WGS-84  <span class="c1"># 地球椭球模型</span>
+<span class="nv">MAP_SCALE_FACTOR</span>    <span class="o">=</span> default <span class="c1"># 最小化面积失真所使用的比例因子</span>
+<span class="nv">MEASURE_UNIT</span>                <span class="o">=</span> cm  <span class="c1"># 默认单位长度</span>
+<span class="c1">#-------- Calendar/Time Parameters ----------</span>
+<span class="nv">TIME_FORMAT_PRIMARY</span> <span class="o">=</span> full <span class="c1"># 一级标注中月份、周名的格式。full：January。abbrevaite：Jan。character：J。</span>
+<span class="nv">TIME_FORMAT_SECONDARY</span>       <span class="o">=</span> full <span class="c1"># 二级标注中月份、周名的格式</span>
+<span class="nv">TIME_EPOCH</span>          <span class="o">=</span> <span class="m">2000</span>-01-01T12:00:00  <span class="c1"># 指定所有相对时间的参考时刻</span>
+<span class="nv">TIME_IS_INTERVAL</span>    <span class="o">=</span> OFF  <span class="c1"># 输入日期不按间隔调整</span>
+<span class="nv">TIME_INTERVAL_FRACTION</span>      <span class="o">=</span> <span class="m">0</span>.5   <span class="c1"># 时间标注置于间隔中心</span>
+<span class="nv">TIME_LANGUAGE</span>               <span class="o">=</span> us   <span class="c1"># 时间语言</span>
+<span class="nv">TIME_UNIT</span>           <span class="o">=</span> d  <span class="c1"># 指定相对时间数据相对于参考时刻的单位</span>
+<span class="nv">TIME_WEEK_START</span>             <span class="o">=</span> Sunday  <span class="c1"># 指定一周的第一天</span>
+<span class="nv">Y2K_OFFSET_YEAR</span>             <span class="o">=</span> <span class="m">1950</span>  <span class="c1"># 给定用两位数字表示四位数年份时100年序列的第一年1950-2049，51表示1951，20表示2020</span>
+<span class="c1">#-------- Miscellaneous Parameters ----------</span>
+<span class="nv">HISTORY</span>                     <span class="o">=</span> TRUE <span class="c1"># 是否记录历史命令中的参数</span>
+<span class="nv">INTERPOLANT</span>         <span class="o">=</span> akima  <span class="c1"># 一维插值算法</span>
+<span class="nv">LINE_STEP</span>           <span class="o">=</span> <span class="m">0</span>.025c  <span class="c1"># 绘制直线时取点的间隔</span>
+<span class="nv">VECTOR_SHAPE</span>                <span class="o">=</span> <span class="m">0</span>    <span class="c1"># 矢量箭头形状。0：三角形。1：箭头形状。2：打开的v字</span>
+<span class="nv">VERBOSE</span>                     <span class="o">=</span> FALSE <span class="c1"># 运行时是否显示详细信息，-V</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../gmt6/" class="btn btn-neutral float-right" title="GMT6" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../focmec/" class="btn btn-neutral float-left" title="FOCMEC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

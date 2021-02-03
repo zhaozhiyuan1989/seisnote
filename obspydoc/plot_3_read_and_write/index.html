@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>读写地震数据 &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="波形绘制" href="../plot_4_waveform_plotting/" />
+    <link rel="prev" title="世界标准时间" href="../plot_2_utc_date_time/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt4/">GMT4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../">ObsPy</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../#id1">学习资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../#id2">安装</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../#id3">主要内容</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../plot_2_utc_date_time/">世界标准时间</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">读写地震数据</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">读写波形数据</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">读写地震目录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">读写元数据</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_4_waveform_plotting/">波形绘制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_5_retrieving_data/">从数据中心申请地震数据</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../pygmtdoc/">PyGMT</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../">ObsPy</a> &raquo;</li>
+        
+      <li>读写地震数据</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/obspydoc/plot_3_read_and_write.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">注解</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-obspydoc-plot-3-read-and-write-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="sphx-glr-obspydoc-plot-3-read-and-write-py">
+<span id="id1"></span><h1>读写地震数据<a class="headerlink" href="#sphx-glr-obspydoc-plot-3-read-and-write-py" title="永久链接至标题">¶</a></h1>
+<p>本节简单介绍如何利用 ObsPy 读写地震波形数据、地震目录和元数据。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">obspy</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h2>读写波形数据<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>ObsPy 利用 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.stream.read.html#obspy.core.stream.read" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">read()</span></code></a> 函数将各种格式的地震数据（如 SAC、MiniSEED 等）读入 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.stream.Stream.html#obspy.core.stream.Stream" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stream</span></code></a> 中。</p>
+<p><a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.stream.Stream.html#obspy.core.stream.Stream" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stream</span></code></a> 类似于列表对象，可以包含多个
+<a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.trace.Trace.html#obspy.core.trace.Trace" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trace</span></code></a>。</p>
+<p>每个 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.trace.Trace.html#obspy.core.trace.Trace" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Trace</span></code></a> 都包含指向连续时间序列的 <code class="docutils literal notranslate"><span class="pre">data</span></code>
+属性和指向所有元数据的 <code class="docutils literal notranslate"><span class="pre">stats</span></code> 属性。例如，<code class="docutils literal notranslate"><span class="pre">starttime</span></code> 和 <code class="docutils literal notranslate"><span class="pre">endtime</span></code> 等元数据都以字典形式储存在 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.trace.Stats.html#obspy.core.trace.Stats" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stats</span></code></a> 对象中。</p>
+<p>经过处理后，可以用 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.stream.Stream.write.html#obspy.core.stream.Stream.write" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> 方法将数据保存到本地。</p>
+<p>下面举例说明：</p>
+<p><strong>从服务器读取波形数据并写入到本地文件</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span> <span class="o">=</span> <span class="n">obspy</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># 从服务器读取波形数据示例文件到 Stream 对象中</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span>  <span class="c1"># 打印 Stream 对象信息</span>
+<span class="n">tr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;test.mseed&quot;</span><span class="p">)</span>  <span class="c1"># 将波形数据保存到本地，可通过后缀名确定文件类型</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>3 Trace(s) in Stream:
+BW.RJOB..EHZ | 2009-08-24T00:20:03.000000Z - 2009-08-24T00:20:32.990000Z | 100.0 Hz, 3000 samples
+BW.RJOB..EHN | 2009-08-24T00:20:03.000000Z - 2009-08-24T00:20:32.990000Z | 100.0 Hz, 3000 samples
+BW.RJOB..EHE | 2009-08-24T00:20:03.000000Z - 2009-08-24T00:20:32.990000Z | 100.0 Hz, 3000 samples
+</pre></div>
+</div>
+<p><strong>从本地读取地震波形数据并转换格式存储到本地</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.sac&#39;</span><span class="p">):</span>  <span class="c1"># 遍历当前目录中以 &quot;.sac&quot; 结尾的文件</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="n">obspy</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>  <span class="c1"># 将数据读取到以 st 命名的 Stream 对象中</span>
+    <span class="n">tr</span> <span class="o">=</span> <span class="n">st</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 把 Stream 对象中的第一个 Trace 赋予变量 tr</span>
+    <span class="c1"># 打印头段变量和经过处理的波形数据</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%f</span><span class="s2"> </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">station</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">starttime</span><span class="p">),</span><span class="n">tr</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">tr</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">stats</span><span class="p">)</span>  <span class="c1"># 打印元数据</span>
+  <span class="c1"># tr.write(file+&quot;.mseed&quot;, format=&quot;mseed&quot;)  # 以 mseed 格式存储至本地</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===================================================</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>读写地震目录<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>利用 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.event.catalog.read_events.html#obspy.core.event.catalog.read_events" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_events()</span></code></a> 函数读取地震目录到 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.event.Catalog.html#obspy.core.event.Catalog" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Catalog</span></code></a> 对象，然后通过 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.event.Catalog.write.html#obspy.core.event.Catalog.write" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> 方法保存到本地。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">=</span> <span class="n">obspy</span><span class="o">.</span><span class="n">read_events</span><span class="p">()</span>  <span class="c1"># 从服务器读取地震目录示例文件</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>  <span class="c1"># 打印地震目录信息</span>
+<span class="n">cat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;events&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;kml&#39;</span><span class="p">)</span>  <span class="c1"># 以 kml格式存储至本地</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>3 Event(s) in Catalog:
+2012-04-04T14:21:42.300000Z | +41.818,  +79.689 | 4.4 mb | manual
+2012-04-04T14:18:37.000000Z | +39.342,  +41.044 | 4.3 ML | manual
+2012-04-04T14:08:46.000000Z | +38.017,  +37.736 | 3.0 ML | manual
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>读写元数据<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>可以通过 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.inventory.inventory.read_inventory.html#obspy.core.inventory.inventory.read_inventory" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_inventory()</span></code></a> 函数读取元数据到 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.inventory.inventory.Inventory.html#obspy.core.inventory.inventory.Inventory" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inventory</span></code></a> 对象，然后利用 <a class="reference external" href="https://docs.obspy.org/packages/autogen/obspy.core.inventory.inventory.Inventory.write.html#obspy.core.inventory.inventory.Inventory.write" title="(在 ObsPy Documentation (1.2.0) v1.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> 方法将元数据保存到本地。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inv</span> <span class="o">=</span> <span class="n">obspy</span><span class="o">.</span><span class="n">read_inventory</span><span class="p">()</span>  <span class="c1"># 从服务器读取元数据示例文件</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inv</span><span class="p">)</span>  <span class="c1"># 打印元数据信息</span>
+<span class="n">inv</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;inv.pz&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;sacpz&#39;</span><span class="p">)</span>  <span class="c1"># 以 pz 格式存储至本地</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Inventory created at 2014-03-03T11:07:06.198000Z
+        Created by: fdsn-stationxml-converter/1.0.0
+                    http://www.iris.edu/fdsnstationconverter
+        Sending institution: Erdbebendienst Bayern
+        Contains:
+                Networks (2):
+                        BW, GR
+                Stations (5):
+                        BW.RJOB (Jochberg, Bavaria, BW-Net) (3x)
+                        GR.FUR (Fuerstenfeldbruck, Bavaria, GR-Net)
+                        GR.WET (Wettzell, Bavaria, GR-Net)
+                Channels (30):
+                        BW.RJOB..EHZ (3x), BW.RJOB..EHN (3x), BW.RJOB..EHE (3x),
+                        GR.FUR..BHZ, GR.FUR..BHN, GR.FUR..BHE, GR.FUR..HHZ, GR.FUR..HHN,
+                        GR.FUR..HHE, GR.FUR..LHZ, GR.FUR..LHN, GR.FUR..LHE, GR.FUR..VHZ,
+                        GR.FUR..VHN, GR.FUR..VHE, GR.WET..BHZ, GR.WET..BHN, GR.WET..BHE,
+                        GR.WET..HHZ, GR.WET..HHN, GR.WET..HHE, GR.WET..LHZ, GR.WET..LHN,
+                        GR.WET..LHE
+</pre></div>
+</div>
+<p>删除临时文件</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;test.mseed&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;events.kml&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;inv.pz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.200 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-obspydoc-plot-3-read-and-write-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/c604903ce38b578f071bed0b75d7674f/plot_3_read_and_write.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_3_read_and_write.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/9f8aad82e3361cff4e059dc5278cbbcf/plot_3_read_and_write.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_3_read_and_write.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../plot_4_waveform_plotting/" class="btn btn-neutral float-right" title="波形绘制" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../plot_2_utc_date_time/" class="btn btn-neutral float-left" title="世界标准时间" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

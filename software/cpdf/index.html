@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>cpdf &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="distaz" href="../distaz/" />
+    <link rel="prev" title="Anaconda" href="../anaconda/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../anaconda/">Anaconda</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cpdf</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">常用示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pdf">PDF 切割合并</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">PDF 页面信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">PDF 加密和解密</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">PDF 压缩和解压缩</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">PDF 书签和注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">PDF 演讲模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-logo">PDF 添加文本或者 logo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gmt4/">GMT4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../obspydoc/">ObsPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pygmtdoc/">PyGMT</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>cpdf</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/software/cpdf.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cpdf">
+<h1>cpdf<a class="headerlink" href="#cpdf" title="永久链接至标题">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">软件来源</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://github.com/coherentgraphics/cpdf-binaries">https://github.com/coherentgraphics/cpdf-binaries</a></p>
+</dd>
+<dt class="field-even">适用平台</dt>
+<dd class="field-even"><p>Linux、macOS、Windows</p>
+</dd>
+<dt class="field-odd">推荐阅读</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.coherentpdf.com/usage-examples.html">cpdf 示例</a></p>
+</dd>
+<dt class="field-even">更新日期</dt>
+<dd class="field-even"><p>2021-01-27</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>cpdf 是一款开箱即用的软件，下载 <a class="reference download external" download="" href="https://github.com/coherentgraphics/cpdf-binaries/archive/master.zip/"><code class="xref download docutils literal notranslate"><span class="pre">cpdf-binaries-master.zip</span></code></a> 后，将执行程序放到 PATH 路径下即可使用。</p>
+</div>
+<div class="section" id="id2">
+<h2>常用示例<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>对于命令中 <code class="docutils literal notranslate"><span class="pre">%</span></code> 用作特殊字符的， 在 Windows 的 bat 文件中应该用 <code class="docutils literal notranslate"><span class="pre">%%</span></code> 来代替。</p>
+</div>
+<div class="section" id="pdf">
+<h3>PDF 切割合并<a class="headerlink" href="#pdf" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 切割 in.pdf 的 1-3 页以及 12 至最后页并输出到 out.pdf</span>
+$ cpdf <span class="k">in</span>.pdf <span class="m">1</span>-3,12-end -o out.pdf
+<span class="c1"># 切割 in.pdf 倒数第 5 页至倒数第 3 页</span>
+$ cpdf <span class="k">in</span>.pdf ~5-~3 -o out.pdf
+<span class="c1"># 切割 in.pdf 的偶数页</span>
+$ cpdf <span class="k">in</span>.pdf even -o out.pdf
+<span class="c1"># 切割 in.pdf 的奇数页</span>
+$ cpdf <span class="k">in</span>.pdf odd -o out.pdf
+<span class="c1"># 将 in.pdf 切割成单页文件 page001.pdf page002.pdf 等</span>
+$ cpdf -split <span class="k">in</span>.pdf -o page%%%.pdf  <span class="c1"># bat 中应为 page%%%%%%.pdf</span>
+<span class="c1"># 将 in.pdf 每 10 页切割成 1 个 pdf 文件</span>
+$ cpdf -split <span class="k">in</span>.pdf -o Chunk%%%.pdf -chunk <span class="m">10</span>  <span class="c1"># bat 中应为 Chunk%%%%%%.pdf</span>
+<span class="c1"># 以书签为分界线切割 in.pdf</span>
+$ cpdf -split-bookmarks <span class="m">0</span> <span class="k">in</span>.pdf -o @N.pdf
+<span class="c1"># 合并 one.pdf two.pdf three.pdf 并输出到 merge.pdf</span>
+$ cpdf one.pdf two.pdf three.pdf -o merged.pdf
+<span class="c1"># 合并所有 2017 开头的 pdf 文件</span>
+$ cpdf <span class="m">2017</span>*.pdf -o out.pdf
+<span class="c1"># 在 1，3，4 页后添加空白页</span>
+$ cpdf -pad-after <span class="m">1</span>,3,4 <span class="k">in</span>.pdf -o out.pdf
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>PDF 页面信息<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 输出文件的一些相关信息</span>
+$ cpdf -info file.pdf
+<span class="c1"># 输出每页的信息</span>
+$ cpdf -page-info file.pdf
+<span class="c1"># 设置 PDF 中所有文本内容为黑色</span>
+$ cpdf -blacktext <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 在 x 和 y 方向上将 in.pdf 尺寸参数都缩放 2 倍</span>
+$ cpdf -scale-page <span class="s2">&quot;2 2&quot;</span> <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 将页面缩放为 A4 纸</span>
+$ cpdf -scale-to-fit a4portrait <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 试卷模式，将 in.pdf 每 2 页组成 8 开纸</span>
+$ cpdf -twoup-stack <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 将 in.pdf 页面内容向 x 方向移动 26pt ， y 方向移动 18mm</span>
+$ cpdf -shift <span class="s2">&quot;26pt 18mm&quot;</span> <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 将 in.pdf 内容顺时针旋转 90 度</span>
+$ cpdf -rotate-contents <span class="m">90</span> <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 将 in.pdf 切割成 600pt x 400pt 的矩形</span>
+$ cpdf -crop <span class="s2">&quot;0 0 600pt 400pt&quot;</span> <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 裁剪文件</span>
+$ cpdf -crop <span class="s2">&quot;20mm 20mm 300mm 300mm&quot;</span> <span class="k">in</span>.pdf -o out.pdf
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>PDF 加密和解密<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 加密 in.pdf ，文件所有者密码为 zzy ，普通用户密码为 user</span>
+$ cpdf -encrypt 128bit zzy user <span class="k">in</span>.pdf -o encrypt.pdf
+<span class="c1"># 使用文件所有者密码解密 encrypt.pdf</span>
+$ cpdf -decrypt encrypt.pdf <span class="nv">owner</span><span class="o">=</span>zzy -o decrypt.pdf
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>PDF 压缩和解压缩<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 压缩数据流</span>
+$ cpdf -compress <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 解压缩</span>
+$ cpdf -decompress <span class="k">in</span>.pdf -o out.pdf
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>PDF 书签和注释<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列出 in.pdf 所有书签</span>
+$ cpdf -list-bookmarks <span class="k">in</span>.pdf
+<span class="m">0</span> <span class="s2">&quot;Part 1&quot;</span> <span class="m">1</span> open
+<span class="m">1</span> <span class="s2">&quot;Part 1A&quot;</span> <span class="m">2</span>
+<span class="m">2</span> <span class="s2">&quot;Part 1B&quot;</span> <span class="m">3</span>
+<span class="m">0</span> <span class="s2">&quot;Part 2&quot;</span> <span class="m">4</span>
+<span class="m">1</span> <span class="s2">&quot;Part 2a&quot;</span> <span class="m">5</span>
+<span class="c1"># 将书签文件 bookmarks.txt 中所列书签（与上述格式相同）添加到 in.pdf</span>
+$ cpdf -add-bookmarks bookmarks.txt <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 列出 in.pdf 所有注释</span>
+$ cpdf -list-annotations <span class="k">in</span>.pdf
+    --------------------------------
+    Annotation text content <span class="m">1</span>
+    --------------------------------
+
+    --------------------------------
+    Annotation text content <span class="m">2</span>
+    --------------------------------
+<span class="c1"># 将 from.pdf 中的注释信息添加到 in.pdf</span>
+$ cpdf -copy-annotations from.pdf <span class="k">in</span>.pdf -o out.pdf
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>PDF 演讲模式<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 Split 样式从 in.pdf 构建演示文稿，每个幻灯片保持 10s ，作为标题的第一页不会自动移动</span>
+$ cpdf -presentation <span class="k">in</span>.pdf <span class="m">2</span>-end -trans Split -duration <span class="m">10</span> -o out.pdf
+<span class="c1"># 设置 pdf 打开时进入全屏模式</span>
+$ cpdf -set-page-mode FullScreen <span class="k">in</span>.pdf -o out.pdf
+</pre></div>
+</div>
+</div>
+<div class="section" id="pdf-logo">
+<h3>PDF 添加文本或者 logo<a class="headerlink" href="#pdf-logo" title="永久链接至标题">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 添加带页码的文本</span>
+$ cpdf -add-text <span class="s2">&quot;Page %Page of %EndPage&quot;</span> -top 100pt -font <span class="s2">&quot;Times-Roman&quot;</span> -font-size <span class="m">20</span> <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 在每一页添加 logo</span>
+$ cpdf -stamp-on logo.pdf <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 使用 AND 来同时执行几个命令：合并 in.pdf 和 in2.pdf 并在每一页上添加版权印记</span>
+$ cpdf -merge <span class="k">in</span>.pdf in2.pdf AND -add-text <span class="s2">&quot;Copyright 2017&quot;</span> -o out.pdf
+<span class="c1"># 在 pdf 第 5 页附加一个文件</span>
+$ cpdf -attach-file sheet.xls -to-page <span class="m">5</span> <span class="k">in</span>.pdf -o out.pdf
+<span class="c1"># 删除所有附加文件</span>
+$ cpdf -remove-files <span class="k">in</span>.pdf -o out.pdf
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../distaz/" class="btn btn-neutral float-right" title="distaz" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../anaconda/" class="btn btn-neutral float-left" title="Anaconda" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

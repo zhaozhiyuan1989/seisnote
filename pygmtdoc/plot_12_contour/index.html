@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>绘制等高线 &mdash; 地震学学习笔记</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/sphinx_tabs/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" />
+    <link rel="next" title="绘制地形" href="../plot_13_earth_relief/" />
+    <link rel="prev" title="绘制沙滩球" href="../plot_11_meca/" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../" class="icon icon-home"> 地震学学习笔记
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">计算机基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/wsl_setup/">WSL2 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/ubuntu_setup/">Ubuntu 安装配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/linux101/">Linux 基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../computer/filesys/">文件管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">常用软件</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/anaconda/">Anaconda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/cpdf/">cpdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/distaz/">distaz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/focmec/">FOCMEC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt4/">GMT4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/gmt6/">GMT6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypodd/">hypoDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/hypoinverse/">HYPOINVERSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/matlab/">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2ascii/">mseed2ascii</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/mseed2sac/">mseed2sac</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/oh-my-cap/">OH MY CAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/rdseed/">rdseed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sac/">SAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/sactools/">SACTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/taup/">TauP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/velest/">VELEST</a></li>
+</ul>
+<p class="caption"><span class="caption-text">中文手册</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../obspydoc/">ObsPy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">PyGMT</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../#id1">学习资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../#id2">安装</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../#id3">主要内容</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../plot_01_first_figure/">命令初探</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_02_region/">设置绘图区域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_03_basemap/">绘制底图边框</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_04_coastline/">绘制海岸线</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_05_plot/">绘制符号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_06_plotline/">绘制线条</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_07_text/">添加文字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_08_datetime/">读取日期数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_09_colorbar/">添加 colorbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_10_legend/">添加图例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_11_meca/">绘制沙滩球</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">绘制等高线</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">绘制等高线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">设置等高线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">添加地形彩图</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_13_earth_relief/">绘制地形</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_14_grdview/">绘制 3D 曲面</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_15_plot3d/">绘制三维散点图</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_16_grdtrack/">对网格文件采样</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_17_image/">在地图上添加图片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_18_logo/">在地图上添加 logo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_19_config/">配置参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_20_projection/">投影方式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">外部链接</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/zhaozhiyuan1989/seisnote"><i class="fa fa-github fa-fw"></i> 网站源码</a></li>
+            
+                <li class="toctree-l1"><a href="mailto:shetu2008@163.com"><i class="fa fa-envelope fa-fw"></i> E-mail</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">地震学学习笔记</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../">PyGMT</a> &raquo;</li>
+        
+      <li>绘制等高线</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/zhaozhiyuan1989/seisnote/blob/main/source/pygmtdoc/plot_12_contour.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">注解</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-pygmtdoc-plot-12-contour-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="sphx-glr-pygmtdoc-plot-12-contour-py">
+<span id="id1"></span><h1>绘制等高线<a class="headerlink" href="#sphx-glr-pygmtdoc-plot-12-contour-py" title="永久链接至标题">¶</a></h1>
+<p>利用 <a class="reference external" href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.grdcontour.html#pygmt.Figure.grdcontour" title="(在 PyGMT vv0.2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour()</span></code></a> 绘制等高线。</p>
+<div class="section" id="id2">
+<h2>绘制等高线<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>首先利用 <a class="reference external" href="https://www.pygmt.org/latest/api/generated/pygmt.datasets.load_earth_relief.html#pygmt.datasets.load_earth_relief" title="(在 PyGMT vv0.2.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pygmt.datasets.load_earth_relief()</span></code></a> 从 GMT 服务器读取地形数据：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_earth_relief</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;05m&quot;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">92.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">82.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]: Remote data courtesy of GMT data server OCEANIA [https://oceania.generic-mapping-tools.org]
+grdblend [NOTICE]: Earth Relief at 5x5 arc minutes from Gaussian Cartesian filtering (9 km fullwidth) of SRTM15+V2.1 [Tozer et al., 2019].
+grdblend [NOTICE]:   -&gt; Download 180x180 degree grid tile (earth_relief_05m_p): S90W180
+</pre></div>
+</div>
+<p><a class="reference external" href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.grdcontour.html#pygmt.Figure.grdcontour" title="(在 PyGMT vv0.2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour()</span></code></a> 读取网格文件后，会同时绘制有标注的等高线和无标注的等高线。在下例中，等高线间距为 500m，每 1000m 进行注释，默认采用等距圆柱投影：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>  <span class="c1"># 地形网格文件</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 12 contour" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_12_contour_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>设置等高线<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span>
+    <span class="n">annotation</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>  <span class="c1"># 等高线标注间隔</span>
+    <span class="n">interval</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>  <span class="c1"># 等高线绘制间隔</span>
+    <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4000</span><span class="p">,</span> <span class="o">-</span><span class="mi">2000</span><span class="p">],</span>  <span class="c1"># 等高线绘制区间</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span>  <span class="c1"># 设置投影方式</span>
+    <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 显示边框</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 12 contour" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_12_contour_002.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>添加地形彩图<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.grdimage.html#pygmt.Figure.grdimage" title="(在 PyGMT vv0.2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage()</span></code></a> 可以为 <a class="reference external" href="https://www.pygmt.org/latest/api/generated/pygmt.Figure.grdcontour.html#pygmt.Figure.grdcontour" title="(在 PyGMT vv0.2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour()</span></code></a> 添加地形彩图，学习《<a class="reference external" href="https://docs.gmt-china.org/latest/tutorial/layers/" title="(在 GMT中文手册 v6.1)"><span>理解图层</span></a>》后可以知道必须先绘制地形彩图，再绘制等高线。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
+    <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;haxby&quot;</span><span class="p">,</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span>
+    <span class="n">annotation</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">interval</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+    <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4000</span><span class="p">,</span> <span class="o">-</span><span class="mi">2000</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="plot 12 contour" class="sphx-glr-single-img" src="../../_images/sphx_glr_plot_12_contour_003.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Image object&gt;
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.577 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-pygmtdoc-plot-12-contour-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/d919f7381937778b7b33298dd36f3eb4/plot_12_contour.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_12_contour.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/65523590c008b09a0bdebbae7e2fff2c/plot_12_contour.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_12_contour.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../plot_13_earth_relief/" class="btn btn-neutral float-right" title="绘制地形" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../plot_11_meca/" class="btn btn-neutral float-left" title="绘制沙滩球" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2017–2021, 赵志远.
+      <span class="lastupdated">
+        最后更新于 2021年02月03日.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
