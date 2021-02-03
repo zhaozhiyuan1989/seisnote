@@ -39,7 +39,6 @@ fig = pygmt.Figure()
 fig.coast(
     region="102.5/105.5/30.5/32.5",
     projection="Q104/15c",
-    borders="a/0.5p,black",
     frame=["WSen", "a"],
 )
 # 构建输入文本
@@ -52,9 +51,12 @@ with open("examples.txt", "w") as f:
     f.write("104.1200  31.7800  12.7 186.00 68.00  107.00  4.7 103.830  32.2600  F\n")
     f.write("104.2300  31.6100  62.0  86.00 63.00  -51.00  4.7 104.960  31.6900  G\n")
 
+# 输入文件时需要 convention 指定震源机制解的格式，可以添加 offset 偏移震源球位置
 fig.meca("examples.txt", scale="1c", convention="aki", offset="0.1p,red,.+s0.2c")
 fig.show()
 
+#%%
 # 清除临时文件
+
 import os
 os.remove("examples.txt")
