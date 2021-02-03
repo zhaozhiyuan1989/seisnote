@@ -12,6 +12,11 @@
 
 """
 
+#%%
+# 利用字典传入数据
+# ------------------
+
+# sphinx_gallery_thumbnail_number = 2
 import pygmt
 
 fig = pygmt.Figure()
@@ -34,6 +39,8 @@ fig.meca(focal_mechanism, scale="1c")
 fig.show()
 
 #%%
+# 利用文本传入数据
+# ---------------------
 
 fig = pygmt.Figure()
 fig.coast(
@@ -42,6 +49,7 @@ fig.coast(
     land="grey",
     frame=["WSen", "a"],
 )
+
 # 构建输入文本
 with open("examples.txt", "w") as f:
     f.write("104.3300  31.90    39.8  32.00 64.00   85.00  7.0 0        0        A\n")
@@ -57,7 +65,34 @@ fig.meca("examples.txt", scale="1c", convention="aki", offset="0.1p,red,.+s0.2c"
 fig.show()
 
 #%%
+# PyGMT 访问 GMT 模块
+# --------------------
+# 目前 PyGMT 的功能还不是很齐全，对于目前无法实现的功能可以
+# 利用 PyGMT 的 :class:`pygmt.clib.Session` 访问 GMT 模块的功能。
+
+fig = pygmt.Figure()
+fig.coast(
+    region="102.5/105.5/30.5/32.5",
+    projection="Q104/15c",
+    land="grey",
+    frame=["WSen", "a"],
+)
+
+# 生成 CPT 文件，为每个深度设置不同的颜色
+with open('meca.cpt','w') as f:
+    f.write(" 0   0-1-1   20   0-1-1\n")
+    f.write("20  60-1-1   40  60-1-1\n")
+    f.write("40 120-1-1   60 120-1-1\n")
+    f.write("60 240-1-1  100 240-1-1\n")
+
+with pygmt.clib.Session() as session:
+    session.call_module('meca','examples.txt -CP5p -Sa1.3c -Zmeca.cpt')
+    session.call_module('colorbar','-Cmeca.cpt -DjBL+w5c/0.5c+ml+o0.8c/0.4c -Bx+lDepth -By+lkm -S')
+
+fig.show()
+#%%
 # 清除临时文件
 
 import os
 os.remove("examples.txt")
+os.remove("meca.cpt")
