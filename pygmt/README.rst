@@ -12,6 +12,11 @@ PyGMT 为 GMT 提供了 Python 接口，是一个适用于处理地理空间
 还无法实现时，可以利用 :class:`pygmt.clib.Session` 在 PyGMT
 中调用 GMT 模块绘图，在《:doc:`plot_11_meca`》一节中有示例。
 
+.. note::
+
+    GMT 里的所有单字符选项在 PyGMT 里都可以用，
+    比如可以用 ``B="WSen"``，但是 PyGMT 不鼓励这样做。
+
 本文目的在于用简单的示例说明如何在 PyGMT 中添加、修改 GMT 绘图参数，
 从而让 GMT 用户可以轻松掌握 PyGMT 的使用。
 
