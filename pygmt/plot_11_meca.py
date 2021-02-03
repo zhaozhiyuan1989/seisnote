@@ -39,6 +39,7 @@ fig = pygmt.Figure()
 fig.coast(
     region="102.5/105.5/30.5/32.5",
     projection="Q104/15c",
+    land="grey",
     frame=["WSen", "a"],
 )
 # 构建输入文本
