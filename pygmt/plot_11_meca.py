@@ -16,7 +16,7 @@
 # 利用字典传入数据
 # ------------------
 
-# sphinx_gallery_thumbnail_number = 2
+# sphinx_gallery_thumbnail_number = 3
 import pygmt
 
 fig = pygmt.Figure()

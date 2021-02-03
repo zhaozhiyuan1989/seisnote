@@ -8,6 +8,10 @@ PyGMT
 PyGMT 为 GMT 提供了 Python 接口，是一个适用于处理地理空间
 和地球物理数据并制作精美图形的模块。
 
+由于 PyGMT 还在不断更新，如果某些 GMT 的绘图选项在 PyGMT 中
+还无法实现时，可以利用 :class:`pygmt.clib.Session` 在 PyGMT
+中调用 GMT 模块绘图，在《:doc:`plot_11_meca`》一节中有示例。
+
 本文目的在于用简单的示例说明如何在 PyGMT 中添加、修改 GMT 绘图参数，
 从而让 GMT 用户可以轻松掌握 PyGMT 的使用。
 
