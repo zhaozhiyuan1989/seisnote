@@ -43,6 +43,27 @@ for file in glob.glob('*.sac'):  # 遍历当前目录中以 ".sac" 结尾的文�
     print(tr.stats)  # 打印元数据
   # tr.write(file+".mseed", format="mseed")  # 以 mseed 格式存储至本地
     print("===================================================\n")
+
+#%%
+# **从本地读取 miniseed 地震波形数据并转换格式存储到本地**
+import obspy
+import glob
+st=obspy.read('E04834KP.544')
+print(st[0].stats)
+
+for tr in st:
+    #print(type(tr))
+    filename='.'.join([tr.stats.network,tr.stats.station,tr.stats.location,tr.stats.channel])
+    tr.write(filename+'.sac')
+
+st1=obspy.Stream()
+for file in glob.glob('*.sac'):
+    st1+=obspy.read(file)
+st1.write('test.mseed')
+st1.plot()
+
+for tr1 in st1:
+    print(tr1.stats)
     
 #%%    
 # 读写地震目录
